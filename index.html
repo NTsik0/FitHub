@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FITNESS HUB — Start Training Now</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== HEADER / NAV ===================== -->
+  <header>
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        FITNESS HUB
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link">Home</a></li>
+        <li><a href="gyms.html" class="nav-link">Places</a></li>
+        <li><a href="#schedule" class="nav-link">Schedule</a></li>
+        <li><a href="#instructors-section" class="nav-link">Instructors</a></li>
+       <li><a href="#contact" class="nav-link">Contact</a></li>
+<li><a href="account.html" class="nav-link nav-account">Account</a></li>
+<li><a href="gym-place.html" class="nav-link nav-cta">Find a Gym</a></li>
+      </ul>
+      <!-- Mobile hamburger (CSS only toggle trick) -->
+      <label class="hamburger" for="mobile-toggle">
+        <span></span><span></span><span></span>
+      </label>
+      <input type="checkbox" id="mobile-toggle" class="mobile-toggle-input" />
+      <ul class="mobile-menu">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="gyms.html">Places</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#instructors-section">Instructors</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="account.html">Account</a></li>
+        <li><a href="gym-place.html">Find a Gym</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===================== SPLIT CURTAIN HERO ===================== -->
+    <section id="hero" class="hero-split">
+
+      <!-- LEFT PANEL — GYM PLACES -->
+      <div class="hero-panel panel-left">
+        <div class="panel-bg panel-bg-left"></div>
+        <div class="panel-overlay overlay-left"></div>
+        <div class="panel-content">
+          <span class="panel-tag">Explore</span>
+          <h2 class="panel-heading">GYM<br>PLACES</h2>
+          <p class="panel-sub">Find the best fitness centres near you — rated, reviewed and ready.</p>
+          <a href="gyms.html" class="panel-btn">Browse Gyms →</a>
+        </div>
+      </div>
+
+      <!-- DIVIDER — flex child so it moves with the panels -->
+      <div class="curtain-divider" aria-hidden="true">
+        <div class="divider-line"></div>
+        <span class="divider-logo">FH</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- RIGHT PANEL — INSTRUCTORS -->
+      <div class="hero-panel panel-right">
+        <div class="panel-bg panel-bg-right"></div>
+        <div class="panel-overlay overlay-right"></div>
+        <div class="panel-content">
+          <span class="panel-tag">Meet</span>
+          <h2 class="panel-heading">EXPERT<br>TRAINERS</h2>
+          <p class="panel-sub">Connect with certified personal trainers who push you further.</p>
+          <a href="#instructors-section" class="panel-btn">Meet Trainers →</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================== BOOK A SESSION BANNER ===================== -->
+    <section class="book-banner">
+      <div class="book-banner-inner">
+        <div class="book-banner-text">
+          <h3>Ready to Start?</h3>
+          <p>Book your first free session today — no commitment required.</p>
+        </div>
+        <a href="#contact" class="book-banner-btn">Book a Session</a>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURES STRIP ===================== -->
+    <section class="features-strip">
+      <div class="feature-item">
+        <span class="feature-icon">🏋️</span>
+        <h4>50+ Gyms</h4>
+        <p>Across Georgia</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">👟</span>
+        <h4>200+ Trainers</h4>
+        <p>Certified professionals</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🥗</span>
+        <h4>Nutrition Plans</h4>
+        <p>Keto, balanced &amp; more</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">📅</span>
+        <h4>Flexible Plans</h4>
+        <p>Monthly or yearly</p>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURED GYM PLACES ===================== -->
+    <section id="places-section" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Featured <span class="accent">Fitness Centres</span></h2>
+        <a href="gyms.html" class="section-link">See All →</a>
+      </div>
+      <div class="cards-grid">
+        <article class="gym-card">
+          <div class="gym-card-img" style="background-image:url('https://placehold.co/400x220/0A0A0A/DC2626?text=RULE+FITNESS')"></div>
+          <div class="gym-card-body">
+            <h3>Rule Fitness</h3>
+            <p class="gym-meta">Batumi · Premium</p>
+            <span class="gym-rating">★ 4.8</span>
+            <a href="gym-place.html" class="gym-card-btn">View Details</a>
+          </div>
+        </article>
+        <article class="gym-card">
+          <div class="gym-card-img" style="background-image:url('https://placehold.co/400x220/0A0A0A/DC2626?text=OLYMPIA+FITNESS')"></div>
+          <div class="gym-card-body">
+            <h3>Olympia Fitness</h3>
+            <p class="gym-meta">Batumi · Budget</p>
+            <span class="gym-rating">★ 4.5</span>
+            <a href="gym-place.html" class="gym-card-btn">View Details</a>
+          </div>
+        </article>
+        <article class="gym-card">
+          <div class="gym-card-img" style="background-image:url('https://placehold.co/400x220/0A0A0A/DC2626?text=GLADIATOR+FIT')"></div>
+          <div class="gym-card-body">
+            <h3>Gladiator Fitness</h3>
+            <p class="gym-meta">Tbilisi · Premium</p>
+            <span class="gym-rating">★ 4.9</span>
+            <a href="gym-place.html" class="gym-card-btn">View Details</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== INSTRUCTORS ===================== -->
+    <section id="instructors-section" class="section-container section-dark">
+      <div class="section-header">
+        <h2 class="section-title">Meet Our <span class="accent">Instructors</span></h2>
+        <p class="section-subtitle">Certified trainers committed to your results</p>
+      </div>
+      <div class="instructors-grid">
+        <article class="instructor-card">
+          <div class="instructor-img" style="background-image:url('https://placehold.co/300x320/111/DC2626?text=TRAINER')"></div>
+          <div class="instructor-info">
+            <h3>Alex Beridze</h3>
+            <p class="instructor-spec">Strength &amp; Conditioning</p>
+            <p class="instructor-exp">8 years experience</p>
+            <a href="#contact" class="instructor-btn">Book Session</a>
+          </div>
+        </article>
+        <article class="instructor-card">
+          <div class="instructor-img" style="background-image:url('https://placehold.co/300x320/111/DC2626?text=TRAINER')"></div>
+          <div class="instructor-info">
+            <h3>Nino Kvaratskhelia</h3>
+            <p class="instructor-spec">Yoga &amp; Flexibility</p>
+            <p class="instructor-exp">5 years experience</p>
+            <a href="#contact" class="instructor-btn">Book Session</a>
+          </div>
+        </article>
+        <article class="instructor-card">
+          <div class="instructor-img" style="background-image:url('https://placehold.co/300x320/111/DC2626?text=TRAINER')"></div>
+          <div class="instructor-info">
+            <h3>Giorgi Tabatadze</h3>
+            <p class="instructor-spec">CrossFit &amp; HIIT</p>
+            <p class="instructor-exp">6 years experience</p>
+            <a href="#contact" class="instructor-btn">Book Session</a>
+          </div>
+        </article>
+        <article class="instructor-card">
+          <div class="instructor-img" style="background-image:url('https://placehold.co/300x320/111/DC2626?text=TRAINER')"></div>
+          <div class="instructor-info">
+            <h3>Mariam Dvalishvili</h3>
+            <p class="instructor-spec">Cardio &amp; Nutrition</p>
+            <p class="instructor-exp">4 years experience</p>
+            <a href="#contact" class="instructor-btn">Book Session</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== SCHEDULE + PRICING TABLE ===================== -->
+    <section id="schedule" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Weekly <span class="accent">Schedule</span></h2>
+        <p class="section-subtitle">Pick your trainer and time slot — May 2025</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="schedule-table">
+          <caption>Training Schedule — May 2025 · All times in Tbilisi (GMT+4)</caption>
+          <thead>
+            <tr>
+              <th>Day / Date</th>
+              <th>Alex Beridze<br><small>Strength</small></th>
+              <th>Nino Kvaratskhelia<br><small>Yoga</small></th>
+              <th>Giorgi Tabatadze<br><small>CrossFit</small></th>
+              <th>Mariam Dvalishvili<br><small>Cardio</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="day-cell">Monday<br><small>May 5</small></td>
+              <td class="slot-available">09:00–10:00<br><small>Available</small></td>
+              <td class="slot-booked">11:00–12:00<br><small>Booked</small></td>
+              <td class="slot-available">14:00–15:00<br><small>Available</small></td>
+              <td class="slot-available">17:00–18:00<br><small>Available</small></td>
+            </tr>
+            <tr>
+              <td class="day-cell">Wednesday<br><small>May 7</small></td>
+              <td class="slot-booked">10:00–11:00<br><small>Booked</small></td>
+              <td class="slot-available">09:00–10:00<br><small>Available</small></td>
+              <td class="slot-booked">13:00–14:00<br><small>Booked</small></td>
+              <td class="slot-available">16:00–17:00<br><small>Available</small></td>
+            </tr>
+            <tr>
+              <td class="day-cell">Friday<br><small>May 9</small></td>
+              <td class="slot-available">08:00–09:00<br><small>Available</small></td>
+              <td class="slot-available">12:00–13:00<br><small>Available</small></td>
+              <td class="slot-available">15:00–16:00<br><small>Available</small></td>
+              <td class="slot-booked">18:00–19:00<br><small>Booked</small></td>
+            </tr>
+            <tr>
+              <td class="day-cell">Saturday<br><small>May 10</small></td>
+              <td class="slot-available">10:00–11:00<br><small>Available</small></td>
+              <td class="slot-booked">11:00–12:00<br><small>Booked</small></td>
+              <td class="slot-available">13:00–14:00<br><small>Available</small></td>
+              <td class="slot-available">15:00–16:00<br><small>Available</small></td>
+            </tr>
+          </tbody>
+          <!-- Membership pricing row pinned at the bottom -->
+          <tfoot>
+            <tr class="pricing-row">
+              <td class="pricing-label">💳 Membership<br><small>per month</small></td>
+              <td>₾120 / mo<br><small>Strength Plan</small></td>
+              <td>₾90 / mo<br><small>Yoga Plan</small></td>
+              <td>₾140 / mo<br><small>CrossFit Plan</small></td>
+              <td>₾100 / mo<br><small>Cardio Plan</small></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <p class="table-note">🟢 Available = open to book &nbsp;|&nbsp; 🔴 Booked = session taken</p>
+    </section>
+
+    <!-- ===================== MAP SECTION ===================== -->
+    <section id="map-section" class="section-container section-dark">
+      <div class="section-header">
+        <h2 class="section-title">Find Us on <span class="accent">the Map</span></h2>
+        <p class="section-subtitle">Our partner gyms across Georgia</p>
+      </div>
+      <div class="map-wrapper">
+        <iframe
+  src="https://www.google.com/maps?q=Gyms+Georgia&output=embed"
+  width="100%"
+  height="400"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  title="Fitness Hub locations in Georgia"
+></iframe>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT / REGISTRATION FORM ===================== -->
+    <section id="contact" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Book a Session &amp; <span class="accent">Register</span></h2>
+        <p class="section-subtitle">Fill in the form and we'll get back to you within 24 hours</p>
+      </div>
+
+      <div class="form-layout">
+        <form class="contact-form" action="#" method="post">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="fname" placeholder="e.g. Giorgi" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="lname" placeholder="e.g. Beridze" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="trainer">Choose a Trainer *</label>
+            <select id="trainer" name="trainer" required>
+              <option value="" disabled selected>— Select a trainer —</option>
+              <option value="alex">Alex Beridze — Strength &amp; Conditioning</option>
+              <option value="nino">Nino Kvaratskhelia — Yoga &amp; Flexibility</option>
+              <option value="giorgi">Giorgi Tabatadze — CrossFit &amp; HIIT</option>
+              <option value="mariam">Mariam Dvalishvili — Cardio &amp; Nutrition</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Preferred Training Time</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="time" value="morning" /> Morning (7–12)
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="time" value="afternoon" /> Afternoon (12–17)
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="time" value="evening" /> Evening (17–21)
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Goals (select all that apply)</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="goals" value="strength" /> Build Strength
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="goals" value="weight" /> Lose Weight
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="goals" value="flexibility" /> Improve Flexibility
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="goals" value="endurance" /> Boost Endurance
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="motivation">Motivation / Special Requests</label>
+            <textarea id="motivation" name="motivation" rows="5"
+              placeholder="Tell us about your fitness goals, injuries, or any special requirements…"></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Send My Request</button>
+        </form>
+
+        <!-- Side info card -->
+        <aside class="form-aside">
+          <h3>Why Join Us?</h3>
+          <ul class="aside-list">
+            <li>✅ Free first consultation session</li>
+            <li>✅ Certified professional trainers</li>
+            <li>✅ Flexible morning &amp; evening slots</li>
+            <li>✅ Nutrition guidance included</li>
+            <li>✅ Access to 50+ partner gyms</li>
+            <li>✅ Cancel anytime, no contract</li>
+          </ul>
+          <div class="aside-contact">
+            <p><strong>Email:</strong><br>fitnesshub2026@gmail.com</p>
+            <p><strong>Hours:</strong><br>Mon–Sat · 07:00–21:00</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">⚡</span>
+        <span>FITNESS HUB</span>
+        <p>Your journey starts here.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="gyms.html">Gym Finder</a>
+        <a href="gym-place.html">Gym Details</a>
+      </div>
+      <div class="footer-links">
+        <h4>Sections</h4>
+        <a href="#schedule">Schedule</a>
+        <a href="#instructors-section">Instructors</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">📸</a>
+          <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">👥</a>
+          <a href="https://twitter.com" target="_blank" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 FITNESS HUB. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

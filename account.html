@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FITNESS HUB — My Account</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="account-page">
+
+  <!-- HEADER -->
+  <header>
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>FITNESS HUB
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="gyms.html" class="nav-link">Places</a></li>
+        <li><a href="index.html#schedule" class="nav-link">Schedule</a></li>
+        <li><a href="index.html#instructors-section" class="nav-link">Instructors</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li><a href="account.html" class="nav-link active">Account</a></li>
+        <li><a href="gym-place.html" class="nav-link nav-cta">Find a Gym</a></li>
+      </ul>
+      <label class="hamburger" for="mobile-toggle-account">
+        <span></span><span></span><span></span>
+      </label>
+      <input type="checkbox" id="mobile-toggle-account" class="mobile-toggle-input" />
+      <ul class="mobile-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gyms.html">Places</a></li>
+        <li><a href="account.html">Account</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ACCOUNT HERO BANNER -->
+    <section class="account-hero">
+      <div class="account-hero-inner">
+        <div class="account-avatar">
+          <span class="avatar-initials">GH</span>
+          <span class="avatar-badge">Active</span>
+        </div>
+        <div class="account-hero-text">
+          <span class="page-tag">Member Profile</span>
+          <h1>Giorgi <span class="accent">Haritonashvili</span></h1>
+          <p class="account-since">Member since January 2025 &nbsp;·&nbsp; Pro Plan</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN ACCOUNT LAYOUT -->
+    <section class="account-layout section-container">
+
+      <!-- LEFT: SIDEBAR NAV -->
+      <aside class="account-sidebar">
+        <nav class="account-nav">
+          <a href="#profile" class="account-nav-item active-tab">
+            <span class="anav-icon">👤</span> Profile
+          </a>
+          <a href="#membership" class="account-nav-item">
+            <span class="anav-icon">💳</span> Membership
+          </a>
+          <a href="#bookings" class="account-nav-item">
+            <span class="anav-icon">📅</span> My Bookings
+          </a>
+          <a href="#trainers" class="account-nav-item">
+            <span class="anav-icon">🏋️</span> My Trainers
+          </a>
+          <a href="#settings" class="account-nav-item">
+            <span class="anav-icon">⚙️</span> Settings
+          </a>
+          <a href="index.html#contact" class="account-nav-item account-nav-logout">
+            <span class="anav-icon">🚪</span> Sign Out
+          </a>
+        </nav>
+      </aside>
+
+      <!-- RIGHT: CONTENT PANELS -->
+      <div class="account-content">
+
+        <!-- ── PROFILE ── -->
+        <div id="profile" class="account-panel">
+          <div class="panel-title-row">
+            <h2>Profile <span class="accent">Details</span></h2>
+            <a href="#settings" class="panel-edit-btn">Edit Profile</a>
+          </div>
+
+          <div class="profile-grid">
+            <div class="profile-field">
+              <span class="field-label">First Name</span>
+              <span class="field-value">Giorgi</span>
+            </div>
+            <div class="profile-field">
+              <span class="field-label">Last Name</span>
+              <span class="field-value">Haritonashvili</span>
+            </div>
+            <div class="profile-field">
+              <span class="field-label">Email</span>
+              <span class="field-value">giorgi.h@example.com</span>
+            </div>
+            <div class="profile-field">
+              <span class="field-label">Phone</span>
+              <span class="field-value">+995 555 123 456</span>
+            </div>
+            <div class="profile-field">
+              <span class="field-label">City</span>
+              <span class="field-value">Tbilisi, Georgia</span>
+            </div>
+            <div class="profile-field">
+              <span class="field-label">Date of Birth</span>
+              <span class="field-value">14 March 1998</span>
+            </div>
+            <div class="profile-field profile-field-full">
+              <span class="field-label">Training Goals</span>
+              <div class="goal-tags">
+                <span class="goal-tag">💪 Build Strength</span>
+                <span class="goal-tag">🏃 Endurance</span>
+                <span class="goal-tag">⚖️ Weight Management</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats row -->
+          <div class="stats-row">
+            <div class="stat-box">
+              <span class="stat-num">24</span>
+              <span class="stat-label">Sessions Done</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">3</span>
+              <span class="stat-label">Active Trainers</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">4</span>
+              <span class="stat-label">Months Active</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num accent">Pro</span>
+              <span class="stat-label">Current Plan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── MEMBERSHIP ── -->
+        <div id="membership" class="account-panel">
+          <div class="panel-title-row">
+            <h2>My <span class="accent">Membership</span></h2>
+            <a href="index.html#contact" class="panel-edit-btn panel-upgrade-btn">Upgrade Plan</a>
+          </div>
+
+          <div class="membership-card">
+            <div class="mc-left">
+              <span class="mc-plan">Pro Plan</span>
+              <p class="mc-includes">Unlimited classes · Personal trainer · All gyms access</p>
+              <div class="mc-dates">
+                <span>Started: <strong>1 Jan 2025</strong></span>
+                <span>Renews: <strong>1 Jul 2025</strong></span>
+              </div>
+            </div>
+            <div class="mc-right">
+              <span class="mc-price">₾380</span>
+              <span class="mc-period">/ 6 months</span>
+              <span class="mc-status active-status">Active</span>
+            </div>
+          </div>
+
+          <h3 class="sub-heading">Available Plans</h3>
+          <div class="plans-compare">
+            <div class="plan-row">
+              <span class="plan-name">Starter</span>
+              <span class="plan-desc">Gym access only</span>
+              <span class="plan-duration">1 Month</span>
+              <span class="plan-price">₾80</span>
+              <a href="index.html#contact" class="plan-select-btn">Select</a>
+            </div>
+            <div class="plan-row">
+              <span class="plan-name">Active</span>
+              <span class="plan-desc">Gym + 2 classes/week</span>
+              <span class="plan-duration">3 Months</span>
+              <span class="plan-price">₾210</span>
+              <a href="index.html#contact" class="plan-select-btn">Select</a>
+            </div>
+            <div class="plan-row plan-row-current">
+              <span class="plan-name">Pro ✓</span>
+              <span class="plan-desc">Gym + unlimited classes</span>
+              <span class="plan-duration">6 Months</span>
+              <span class="plan-price">₾380</span>
+              <span class="plan-current-badge">Current</span>
+            </div>
+            <div class="plan-row">
+              <span class="plan-name">Elite</span>
+              <span class="plan-desc">All access + trainer</span>
+              <span class="plan-duration">12 Months</span>
+              <span class="plan-price">₾650</span>
+              <a href="index.html#contact" class="plan-select-btn">Select</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── BOOKINGS ── -->
+        <div id="bookings" class="account-panel">
+          <div class="panel-title-row">
+            <h2>My <span class="accent">Bookings</span></h2>
+            <a href="index.html#contact" class="panel-edit-btn">Book a Session</a>
+          </div>
+
+          <h3 class="sub-heading">Upcoming Sessions</h3>
+          <div class="bookings-list">
+            <div class="booking-item booking-upcoming">
+              <div class="booking-date-box">
+                <span class="bdate-day">07</span>
+                <span class="bdate-month">May</span>
+              </div>
+              <div class="booking-details">
+                <h4>Strength &amp; Conditioning</h4>
+                <p>with Alex Beridze &nbsp;·&nbsp; 09:00 – 10:00</p>
+                <p class="booking-gym">📍 Gladiator Fitness, Tbilisi</p>
+              </div>
+              <span class="booking-status-badge upcoming-badge">Upcoming</span>
+            </div>
+
+            <div class="booking-item booking-upcoming">
+              <div class="booking-date-box">
+                <span class="bdate-day">09</span>
+                <span class="bdate-month">May</span>
+              </div>
+              <div class="booking-details">
+                <h4>CrossFit HIIT</h4>
+                <p>with Giorgi Tabatadze &nbsp;·&nbsp; 15:00 – 16:00</p>
+                <p class="booking-gym">📍 Gladiator Fitness, Tbilisi</p>
+              </div>
+              <span class="booking-status-badge upcoming-badge">Upcoming</span>
+            </div>
+
+            <div class="booking-item booking-upcoming">
+              <div class="booking-date-box">
+                <span class="bdate-day">10</span>
+                <span class="bdate-month">May</span>
+              </div>
+              <div class="booking-details">
+                <h4>Cardio &amp; Nutrition Consult</h4>
+                <p>with Mariam Dvalishvili &nbsp;·&nbsp; 15:00 – 16:00</p>
+                <p class="booking-gym">📍 Rule Fitness, Batumi</p>
+              </div>
+              <span class="booking-status-badge upcoming-badge">Upcoming</span>
+            </div>
+          </div>
+
+          <h3 class="sub-heading" style="margin-top:2rem;">Past Sessions</h3>
+          <div class="bookings-list">
+            <div class="booking-item booking-past">
+              <div class="booking-date-box past-box">
+                <span class="bdate-day">28</span>
+                <span class="bdate-month">Apr</span>
+              </div>
+              <div class="booking-details">
+                <h4>Strength Training</h4>
+                <p>with Alex Beridze &nbsp;·&nbsp; 09:00 – 10:00</p>
+                <p class="booking-gym">📍 Gladiator Fitness, Tbilisi</p>
+              </div>
+              <span class="booking-status-badge past-badge">Completed</span>
+            </div>
+            <div class="booking-item booking-past">
+              <div class="booking-date-box past-box">
+                <span class="bdate-day">24</span>
+                <span class="bdate-month">Apr</span>
+              </div>
+              <div class="booking-details">
+                <h4>Yoga &amp; Flexibility</h4>
+                <p>with Nino Kvaratskhelia &nbsp;·&nbsp; 11:00 – 12:00</p>
+                <p class="booking-gym">📍 Reformer Fitness, Tbilisi</p>
+              </div>
+              <span class="booking-status-badge past-badge">Completed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── MY TRAINERS ── -->
+        <div id="trainers" class="account-panel">
+          <div class="panel-title-row">
+            <h2>My <span class="accent">Trainers</span></h2>
+            <a href="index.html#instructors-section" class="panel-edit-btn">Browse All</a>
+          </div>
+
+          <div class="my-trainers-grid">
+            <div class="my-trainer-card">
+              <div class="mt-avatar" style="background-image:url('https://placehold.co/80x80/111/DC2626?text=AB')"></div>
+              <div class="mt-info">
+                <h4>Alex Beridze</h4>
+                <p class="mt-spec">Strength &amp; Conditioning</p>
+                <p class="mt-sessions">12 sessions completed</p>
+                <div class="mt-stars">★★★★★</div>
+              </div>
+              <a href="index.html#contact" class="mt-book-btn">Book Again</a>
+            </div>
+
+            <div class="my-trainer-card">
+              <div class="mt-avatar" style="background-image:url('https://placehold.co/80x80/111/DC2626?text=NK')"></div>
+              <div class="mt-info">
+                <h4>Nino Kvaratskhelia</h4>
+                <p class="mt-spec">Yoga &amp; Flexibility</p>
+                <p class="mt-sessions">7 sessions completed</p>
+                <div class="mt-stars">★★★★★</div>
+              </div>
+              <a href="index.html#contact" class="mt-book-btn">Book Again</a>
+            </div>
+
+            <div class="my-trainer-card">
+              <div class="mt-avatar" style="background-image:url('https://placehold.co/80x80/111/DC2626?text=GT')"></div>
+              <div class="mt-info">
+                <h4>Giorgi Tabatadze</h4>
+                <p class="mt-spec">CrossFit &amp; HIIT</p>
+                <p class="mt-sessions">5 sessions completed</p>
+                <div class="mt-stars">★★★★☆</div>
+              </div>
+              <a href="index.html#contact" class="mt-book-btn">Book Again</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SETTINGS ── -->
+        <div id="settings" class="account-panel">
+          <div class="panel-title-row">
+            <h2>Account <span class="accent">Settings</span></h2>
+          </div>
+
+          <form class="settings-form" action="#" method="post">
+            <h3 class="sub-heading">Personal Information</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="s-fname">First Name</label>
+                <input type="text" id="s-fname" name="fname" value="Giorgi" />
+              </div>
+              <div class="form-group">
+                <label for="s-lname">Last Name</label>
+                <input type="text" id="s-lname" name="lname" value="Haritonashvili" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="s-email">Email Address</label>
+              <input type="email" id="s-email" name="email" value="giorgi.h@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="s-phone">Phone Number</label>
+              <input type="text" id="s-phone" name="phone" value="+995 555 123 456" />
+            </div>
+            <div class="form-group">
+              <label for="s-city">City</label>
+              <select id="s-city" name="city">
+                <option selected>Tbilisi</option>
+                <option>Batumi</option>
+                <option>Kutaisi</option>
+                <option>Rustavi</option>
+              </select>
+            </div>
+
+            <h3 class="sub-heading" style="margin-top:2rem;">Change Password</h3>
+            <div class="form-group">
+              <label for="s-old-pw">Current Password</label>
+              <input type="password" id="s-old-pw" name="old_pw" placeholder="Enter current password" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="s-new-pw">New Password</label>
+                <input type="password" id="s-new-pw" name="new_pw" placeholder="New password" />
+              </div>
+              <div class="form-group">
+                <label for="s-confirm-pw">Confirm Password</label>
+                <input type="password" id="s-confirm-pw" name="confirm_pw" placeholder="Repeat new password" />
+              </div>
+            </div>
+
+            <h3 class="sub-heading" style="margin-top:2rem;">Notifications</h3>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="notif_sessions" checked /> Email reminders for upcoming sessions
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="notif_offers" checked /> Promotional offers &amp; new programs
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="notif_blog" /> New blog posts &amp; fitness tips
+              </label>
+            </div>
+
+            <div class="settings-actions">
+              <button type="submit" class="form-submit">Save Changes</button>
+              <a href="index.html" class="settings-cancel">Cancel</a>
+            </div>
+          </form>
+        </div>
+
+      </div><!-- end account-content -->
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">⚡</span>
+        <span>FITNESS HUB</span>
+        <p>Your journey starts here.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigate</h4>
+        <a href="index.html">Home</a>
+        <a href="gyms.html">Gym Finder</a>
+        <a href="gym-place.html">Gym Details</a>
+        <a href="account.html">My Account</a>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">📸</a>
+          <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">👥</a>
+          <a href="https://twitter.com" target="_blank" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 FITNESS HUB. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

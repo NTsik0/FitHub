@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FITNESS HUB — Gym Details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="gym-place-page">
+
+  <!-- HEADER -->
+  <header>
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>FITNESS HUB
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="gyms.html" class="nav-link">Places</a></li>
+        <li><a href="index.html#schedule" class="nav-link">Schedule</a></li>
+        <li><a href="index.html#instructors-section" class="nav-link">Instructors</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li><a href="gyms.html" class="nav-link nav-cta">← All Gyms</a></li>
+      </ul>
+      <label class="hamburger" for="mobile-toggle-place">
+        <span></span><span></span><span></span>
+      </label>
+      <input type="checkbox" id="mobile-toggle-place" class="mobile-toggle-input" />
+      <ul class="mobile-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gyms.html">Places</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- GYM HERO -->
+    <section class="place-hero">
+      <div class="place-hero-bg" style="background-image:url('https://placehold.co/1400x500/0A0A0A/DC2626?text=GLADIATOR+FITNESS')"></div>
+      <div class="place-hero-overlay"></div>
+      <div class="place-hero-content">
+        <a href="gyms.html" class="back-link">← Back to All Gyms</a>
+        <span class="page-tag">Premium Gym</span>
+        <h1>Gladiator <span class="accent">Fitness</span></h1>
+        <div class="place-meta">
+          <span class="place-rating">★ 4.9</span>
+          <span class="place-city">📍 Tbilisi, Georgia</span>
+          <span class="place-type premium-badge">Premium</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GYM DETAILS LAYOUT -->
+    <section class="place-details section-container">
+
+      <!-- LEFT: INFO -->
+      <div class="place-info">
+
+        <div class="info-block">
+          <h2>About <span class="accent">This Gym</span></h2>
+          <p>Gladiator Fitness is Tbilisi's premier CrossFit and strength training facility. Founded in 2018, the gym has earned a reputation for world-class equipment, elite coaching, and an unmatched training atmosphere. Whether you're an absolute beginner or a seasoned athlete, Gladiator has a program for you.</p>
+        </div>
+
+        <!-- Photo gallery (3 images) -->
+        <div class="info-block">
+          <h3>Gallery</h3>
+          <div class="gallery-grid">
+            <img src="https://placehold.co/340x200/111/DC2626?text=Main+Floor" alt="Gladiator Fitness main training floor" class="gallery-img" />
+            <img src="https://placehold.co/340x200/0A0A0A/DC2626?text=CrossFit+Box" alt="CrossFit box at Gladiator Fitness" class="gallery-img" />
+            <img src="https://placehold.co/340x200/1a1a1a/DC2626?text=Cardio+Zone" alt="Cardio zone at Gladiator Fitness" class="gallery-img" />
+          </div>
+        </div>
+
+        <!-- Amenities -->
+        <div class="info-block">
+          <h3>Amenities</h3>
+          <ul class="amenities-list">
+            <li>🏋️ Olympic Lifting Platforms (×6)</li>
+            <li>🥊 CrossFit Rig &amp; Pull-up Stations</li>
+            <li>🚿 Locker Rooms &amp; Hot Showers</li>
+            <li>🧴 Sauna &amp; Recovery Zone</li>
+            <li>🥗 Nutrition Bar (protein shakes, meals)</li>
+            <li>📱 Free Wi-Fi throughout</li>
+            <li>🅿️ Free parking on site</li>
+            <li>🎧 DJ nights every Friday</li>
+          </ul>
+        </div>
+
+        <!-- Membership table -->
+        <div class="info-block">
+          <h3>Membership Plans</h3>
+          <div class="table-wrapper">
+            <table class="schedule-table membership-table">
+              <caption>Gladiator Fitness — Membership Pricing 2025</caption>
+              <thead>
+                <tr>
+                  <th>Plan</th>
+                  <th>Duration</th>
+                  <th>Price (₾)</th>
+                  <th>Includes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Starter</strong></td>
+                  <td>1 Month</td>
+                  <td class="price-cell">₾80</td>
+                  <td>Gym access only</td>
+                </tr>
+                <tr>
+                  <td><strong>Active</strong></td>
+                  <td>3 Months</td>
+                  <td class="price-cell">₾210</td>
+                  <td>Gym + 2 classes/week</td>
+                </tr>
+                <tr>
+                  <td><strong>Pro</strong></td>
+                  <td>6 Months</td>
+                  <td class="price-cell">₾380</td>
+                  <td>Gym + unlimited classes</td>
+                </tr>
+                <tr>
+                  <td><strong>Elite</strong></td>
+                  <td>12 Months</td>
+                  <td class="price-cell accent-cell">₾650</td>
+                  <td>All access + personal trainer</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Opening hours -->
+        <div class="info-block">
+          <h3>Opening Hours</h3>
+          <div class="hours-grid">
+            <div class="hours-row"><span>Monday – Friday</span><span class="hours-time">06:00 – 23:00</span></div>
+            <div class="hours-row"><span>Saturday</span><span class="hours-time">08:00 – 21:00</span></div>
+            <div class="hours-row"><span>Sunday</span><span class="hours-time">09:00 – 18:00</span></div>
+          </div>
+        </div>
+
+      </div><!-- end place-info -->
+
+      <!-- RIGHT: SIDEBAR -->
+      <aside class="place-sidebar">
+
+        <div class="sidebar-card">
+          <h3>Quick Info</h3>
+          <ul class="quick-info-list">
+            <li><span>📍 Address</span><span>14 Rustaveli Ave,<br>Tbilisi</span></li>
+            <li><span>📞 Phone</span><span>+995 32 221 0000</span></li>
+            <li><span>📧 Email</span><span>info@gladiatorfit.ge</span></li>
+            <li><span>⭐ Rating</span><span>4.9 / 5.0</span></li>
+            <li><span>💰 From</span><span>₾80 / month</span></li>
+          </ul>
+          <a href="index.html#contact" class="sidebar-cta">Book a Free Tour</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Gladiator+Fitness+Tbilisi" target="_blank" class="sidebar-cta sidebar-cta-outline">Open in Google Maps</a>
+        </div>
+
+        <!-- Mini map -->
+        <div class="sidebar-card sidebar-map">
+          <h3>Location</h3>
+          <div class="map-embed map-embed-small">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2977.67!2d44.8096!3d41.6941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDQxJzM4LjgiTiA0NMKwNDgnMzQuNiJF!5e0!3m2!1sen!2sge!4v1700000000000"
+              width="100%"
+              height="220"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              title="Gladiator Fitness location"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="sidebar-card">
+          <h3>Recent Reviews</h3>
+          <div class="review-item">
+            <div class="review-stars">★★★★★</div>
+            <p>"Best gym I've ever trained at — the atmosphere pushes you to be better."</p>
+            <span class="reviewer">— Tornike G.</span>
+          </div>
+          <div class="review-item">
+            <div class="review-stars">★★★★★</div>
+            <p>"Coaches are world-class. I lost 15kg in 4 months here."</p>
+            <span class="reviewer">— Ana K.</span>
+          </div>
+          <div class="review-item">
+            <div class="review-stars">★★★★☆</div>
+            <p>"Excellent facilities. Gets a bit busy on evenings but worth it."</p>
+            <span class="reviewer">— Davit M.</span>
+          </div>
+        </div>
+
+      </aside>
+
+    </section><!-- end place-details -->
+
+    <!-- CTA BAND -->
+    <section class="place-cta-band">
+      <h2>Ready to Train at Gladiator?</h2>
+      <p>Book your free tour and first session today — no commitment needed.</p>
+      <a href="index.html#contact" class="book-banner-btn">Book Free Session</a>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">⚡</span>
+        <span>FITNESS HUB</span>
+        <p>Your journey starts here.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigate</h4>
+        <a href="index.html">Home</a>
+        <a href="gyms.html">Gym Finder</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">📸</a>
+          <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">👥</a>
+          <a href="https://twitter.com" target="_blank" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 FITNESS HUB. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

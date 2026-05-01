@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FITNESS HUB — Find Your Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="gyms-page">
+
+  <!-- HEADER -->
+  <header>
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>FITNESS HUB
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="gyms.html" class="nav-link active">Places</a></li>
+        <li><a href="index.html#schedule" class="nav-link">Schedule</a></li>
+        <li><a href="index.html#instructors-section" class="nav-link">Instructors</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li><a href="gym-place.html" class="nav-link nav-cta">Gym Details</a></li>
+      </ul>
+      <label class="hamburger" for="mobile-toggle-gyms">
+        <span></span><span></span><span></span>
+      </label>
+      <input type="checkbox" id="mobile-toggle-gyms" class="mobile-toggle-input" />
+      <ul class="mobile-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gyms.html">Places</a></li>
+        <li><a href="gym-place.html">Gym Details</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="gyms-hero">
+      <div class="gyms-hero-inner">
+        <span class="page-tag">Explore</span>
+        <h1>Find Your <span class="accent">Gym</span></h1>
+        <p>Discover the best fitness centres by city, rating, and budget.<br>Built for people who train with purpose.</p>
+      </div>
+    </section>
+
+    <!-- FILTER BAR (pure HTML — works as visual layout; JS-free filter labels) -->
+    <section class="filter-section">
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label for="cityFilter">City</label>
+          <select id="cityFilter" name="city">
+            <option value="all">All Cities</option>
+            <option value="batumi">Batumi</option>
+            <option value="tbilisi">Tbilisi</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="ratingFilter">Min Rating</label>
+          <select id="ratingFilter" name="rating">
+            <option value="0">Any Rating</option>
+            <option value="4">4.0 +</option>
+            <option value="4.5">4.5 +</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="budgetFilter">Budget</label>
+          <select id="budgetFilter" name="budget">
+            <option value="all">Any Budget</option>
+            <option value="budget">Budget</option>
+            <option value="premium">Premium</option>
+          </select>
+        </div>
+        <a href="#gym-list" class="filter-btn">Search Gyms</a>
+      </div>
+    </section>
+
+    <!-- GYM LIST + MAP -->
+    <section class="gyms-layout section-container" id="gym-list">
+
+      <!-- LIST -->
+      <div class="gyms-list">
+        <h2 class="section-title">Available <span class="accent">Gyms</span></h2>
+
+        <!-- Gym Card 1 -->
+        <article class="gym-list-card">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=RULE')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div>
+                <h3>Rule Fitness</h3>
+                <p class="glc-meta">Batumi &bull; Premium</p>
+                <p class="glc-desc">Top-tier equipment, powerlifting area, sauna &amp; recovery zone.</p>
+              </div>
+              <div class="glc-rating">
+                <span class="stars">★ 4.8</span>
+                <span class="price-tag premium">Premium</span>
+              </div>
+            </div>
+            <div class="glc-reviews">
+              <p>"Best gym in Batumi — the squat racks are always available."</p>
+              <p>"Staff is super helpful, great vibe at any hour."</p>
+            </div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <a href="https://www.google.com/maps/search/?api=1&query=Rule+Fitness+Batumi" target="_blank" class="glc-btn glc-btn-outline">Open in Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Gym Card 2 -->
+        <article class="gym-list-card">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=OLYMPIA')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div>
+                <h3>Olympia Fitness</h3>
+                <p class="glc-meta">Batumi &bull; Budget</p>
+                <p class="glc-desc">Affordable, clean, good cardio section and free weights area.</p>
+              </div>
+              <div class="glc-rating">
+                <span class="stars">★ 4.5</span>
+                <span class="price-tag budget">Budget</span>
+              </div>
+            </div>
+            <div class="glc-reviews">
+              <p>"Perfect for students — cheap and does everything you need."</p>
+              <p>"Good opening hours, never too crowded."</p>
+            </div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <a href="https://www.google.com/maps/search/?api=1&query=Olympia+Fitness+Batumi" target="_blank" class="glc-btn glc-btn-outline">Open in Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Gym Card 3 -->
+        <article class="gym-list-card">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=GLADIATOR')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div>
+                <h3>Gladiator Fitness</h3>
+                <p class="glc-meta">Tbilisi &bull; Premium</p>
+                <p class="glc-desc">World-class CrossFit boxes, Olympic lifting platforms, elite coaching.</p>
+              </div>
+              <div class="glc-rating">
+                <span class="stars">★ 4.9</span>
+                <span class="price-tag premium">Premium</span>
+              </div>
+            </div>
+            <div class="glc-reviews">
+              <p>"The CrossFit classes here are insane — in the best way."</p>
+              <p>"Coaches know your name and push you every session."</p>
+            </div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <a href="https://www.google.com/maps/search/?api=1&query=Gladiator+Fitness+Tbilisi" target="_blank" class="glc-btn glc-btn-outline">Open in Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Gym Card 4 -->
+        <article class="gym-list-card">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=EXTREME')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div>
+                <h3>Extreme Fit</h3>
+                <p class="glc-meta">Batumi &bull; Budget</p>
+                <p class="glc-desc">No-frills hardcore training with heavy bags and free weights.</p>
+              </div>
+              <div class="glc-rating">
+                <span class="stars">★ 4.7</span>
+                <span class="price-tag budget">Budget</span>
+              </div>
+            </div>
+            <div class="glc-reviews">
+              <p>"Very raw atmosphere — you come here to work, not to show off."</p>
+              <p>"Cheapest gym in the city by far, good basic equipment."</p>
+            </div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <a href="https://www.google.com/maps/search/?api=1&query=Extreme+Fit+Batumi" target="_blank" class="glc-btn glc-btn-outline">Open in Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Gym Card 5 -->
+        <article class="gym-list-card">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=REFORMER')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div>
+                <h3>Reformer Fitness</h3>
+                <p class="glc-meta">Tbilisi &bull; Premium</p>
+                <p class="glc-desc">Pilates reformer machines, mindful movement classes, spa access.</p>
+              </div>
+              <div class="glc-rating">
+                <span class="stars">★ 4.2</span>
+                <span class="price-tag premium">Premium</span>
+              </div>
+            </div>
+            <div class="glc-reviews">
+              <p>"Changed my posture completely — the reformer classes are amazing."</p>
+              <p>"A bit pricey but absolutely worth it for the quality."</p>
+            </div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <a href="https://www.google.com/maps/search/?api=1&query=Reformer+Fitness+Tbilisi" target="_blank" class="glc-btn glc-btn-outline">Open in Maps</a>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- end gyms-list -->
+
+      <!-- MAP PANEL -->
+      <aside class="gyms-map-panel">
+        <h3>Gym Locations</h3>
+        <p class="map-hint">Click "Open in Maps" on any gym to see the exact location.</p>
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d382244.2!2d41.6422!3d42.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sge!4v1700000000000"
+            width="100%"
+            height="380"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            title="Gym locations in Georgia"
+          ></iframe>
+        </div>
+        <div class="map-legend">
+          <span class="legend-item"><span class="legend-dot premium-dot"></span> Premium</span>
+          <span class="legend-item"><span class="legend-dot budget-dot"></span> Budget</span>
+        </div>
+      </aside>
+
+    </section><!-- end gyms-layout -->
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">⚡</span>
+        <span>FITNESS HUB</span>
+        <p>Your journey starts here.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigate</h4>
+        <a href="index.html">Home</a>
+        <a href="gyms.html">Gym Finder</a>
+        <a href="gym-place.html">Gym Details</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">📸</a>
+          <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">👥</a>
+          <a href="https://twitter.com" target="_blank" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 FITNESS HUB. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
