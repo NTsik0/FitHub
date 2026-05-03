@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FITNESS HUB — Find Your Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    #gymMap {
+      width: 100%;
+      height: 400px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      z-index: 1;
+    }
+
+    /* Dark tile tint */
+    .leaflet-tile { filter: brightness(0.55) saturate(0.35) hue-rotate(180deg); }
+    .leaflet-container { background: #0a0a0a; }
+
+    /* Custom pin marker */
+    .gym-marker {
+      width: 34px; height: 34px;
+      background: #DC2626;
+      border: 3px solid #fff;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      box-shadow: 0 4px 14px rgba(220,38,38,0.65);
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+    .gym-marker:hover { box-shadow: 0 4px 24px rgba(220,38,38,1); }
+    .gym-marker.budget { background: #22c55e; box-shadow: 0 4px 14px rgba(34,197,94,0.6); }
+    .gym-marker.budget:hover { box-shadow: 0 4px 24px rgba(34,197,94,1); }
+    .gym-marker-inner {
+      transform: rotate(45deg);
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 100%;
+      font-size: 13px; margin-top: -2px;
+    }
+
+    /* Dark popup theme */
+    .leaflet-popup-content-wrapper {
+      background: #111 !important;
+      border: 1px solid rgba(220,38,38,0.35) !important;
+      border-radius: 14px !important;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.85) !important;
+      color: #F3F4F6 !important;
+      font-family: 'Barlow', sans-serif !important;
+      padding: 0 !important;
+    }
+    .leaflet-popup-content { margin: 0 !important; }
+    .leaflet-popup-tip { background: #111 !important; }
+    .leaflet-popup-close-button { color: #6B7280 !important; top: 10px !important; right: 10px !important; }
+    .leaflet-popup-close-button:hover { color: #DC2626 !important; }
+
+    .map-popup { padding: 1.1rem 1.25rem 1rem; min-width: 210px; }
+    .map-popup-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .06em; color: #F3F4F6; margin-bottom: .2rem; }
+    .map-popup-meta { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #6B7280; margin-bottom: .55rem; }
+    .map-popup-rating { font-size: .9rem; font-weight: 700; color: #F59E0B; margin-bottom: .35rem; }
+    .map-popup-desc { font-size: .82rem; color: #9CA3AF; line-height: 1.5; margin-bottom: .8rem; }
+    .map-popup-tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .8rem; }
+    .map-popup-tag { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 20px; }
+    .tag-premium { background: rgba(220,38,38,.15); color: #DC2626; border: 1px solid rgba(220,38,38,.3); }
+    .tag-budget  { background: rgba(34,197,94,.1);  color: #22c55e; border: 1px solid rgba(34,197,94,.25); }
+    .tag-type    { background: rgba(255,255,255,.05); color: #9CA3AF; border: 1px solid #1f2937; }
+    .map-popup-btn {
+      display: block; padding: .5rem 1rem; background: #DC2626; color: #fff;
+      text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: .95rem;
+      letter-spacing: .1em; border-radius: 8px; text-decoration: none; transition: background .2s;
+    }
+    .map-popup-btn:hover { background: #A31C1C; }
+
+    /* Map panel header */
+    .map-controls {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: .75rem; flex-wrap: wrap; gap: .5rem;
+    }
+    .map-controls h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; letter-spacing: .05em; }
+    .map-visible-count { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #6B7280; }
+    .map-visible-count span { color: #DC2626; }
+
+    /* No results */
+    .no-results {
+      text-align: center; padding: 3rem 1.5rem;
+      background: var(--dark-card); border: 1px dashed var(--border);
+      border-radius: var(--radius-lg); display: none;
+    }
+    .no-results .nr-icon { font-size: 2.5rem; display: block; margin-bottom: .5rem; }
+    .no-results h3 { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: .05em; color: var(--text); }
+    .no-results p  { color: var(--text-muted); font-size: .9rem; margin-top: .35rem; }
+
+    .results-count { font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); display: block; }
+    .results-count span { color: var(--red); font-size: 1rem; }
+
+    .gym-list-card.hidden { display: none; }
+
+    .filter-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+    .filter-pill {
+      font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: .25rem .65rem; background: rgba(220,38,38,.12); color: var(--red);
+      border: 1px solid rgba(220,38,38,.3); border-radius: 20px;
+    }
+
+    .map-legend { display: flex; gap: 1.25rem; margin-top: .85rem; font-size: .78rem; color: var(--text-muted); }
+    .legend-item { display: flex; align-items: center; gap: .4rem; }
+    .legend-dot  { width: 10px; height: 10px; border-radius: 50%; }
+    .premium-dot { background: #DC2626; }
+    .budget-dot  { background: #22c55e; }
+  </style>
+</head>
+<body class="gyms-page">
+
+  <header>
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo"><span class="logo-icon">⚡</span>FITNESS HUB</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="gyms.html" class="nav-link active">Places</a></li>
+        <li><a href="index.html#schedule" class="nav-link">Schedule</a></li>
+        <li><a href="index.html#instructors-section" class="nav-link">Instructors</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li><a href="gym-place.html" class="nav-link nav-cta">Gym Details</a></li>
+      </ul>
+      <label class="hamburger" for="mobile-toggle-gyms"><span></span><span></span><span></span></label>
+      <input type="checkbox" id="mobile-toggle-gyms" class="mobile-toggle-input" />
+      <ul class="mobile-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gyms.html">Places</a></li>
+        <li><a href="gym-place.html">Gym Details</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="gyms-hero">
+      <div class="gyms-hero-inner">
+        <span class="page-tag">Explore</span>
+        <h1>Find Your <span class="accent">Gym</span></h1>
+        <p>Discover the best fitness centres by city, rating, and budget.<br>Built for people who train with purpose.</p>
+      </div>
+    </section>
+
+    <section class="filter-section">
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label for="cityFilter">City</label>
+          <select id="cityFilter">
+            <option value="all">All Cities</option>
+            <option value="tbilisi">Tbilisi</option>
+            <option value="batumi">Batumi</option>
+            <option value="kutaisi">Kutaisi</option>
+            <option value="rustavi">Rustavi</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="ratingFilter">Min Rating</label>
+          <select id="ratingFilter">
+            <option value="0">Any Rating</option>
+            <option value="4">4.0 +</option>
+            <option value="4.5">4.5 +</option>
+            <option value="4.8">4.8 +</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="budgetFilter">Budget</label>
+          <select id="budgetFilter">
+            <option value="all">Any Budget</option>
+            <option value="budget">Budget</option>
+            <option value="premium">Premium</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="typeFilter">Type</label>
+          <select id="typeFilter">
+            <option value="all">All Types</option>
+            <option value="crossfit">CrossFit</option>
+            <option value="yoga">Yoga / Pilates</option>
+            <option value="powerlifting">Powerlifting</option>
+            <option value="cardio">Cardio</option>
+            <option value="boxing">Boxing / MMA</option>
+          </select>
+        </div>
+        <button class="filter-btn" onclick="applyFilters()">Search Gyms</button>
+      </div>
+      <div class="filter-pills" id="filterPills"></div>
+    </section>
+
+    <section class="gyms-layout section-container" id="gym-list">
+
+      <!-- LIST -->
+      <div class="gyms-list">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.5rem;">
+          <h2 class="section-title">Available <span class="accent">Gyms</span></h2>
+          <span class="results-count"><span id="countNum">9</span> gyms found</span>
+        </div>
+
+        <article class="gym-list-card" data-id="1" data-city="batumi" data-rating="4.8" data-budget="premium" data-type="powerlifting">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=RULE')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div><h3>Rule Fitness</h3><p class="glc-meta">Batumi · Premium · Powerlifting</p><p class="glc-desc">Top-tier equipment, powerlifting area, sauna & recovery zone.</p></div>
+              <div class="glc-rating"><span class="stars">★ 4.8</span><span class="price-tag premium">Premium</span></div>
+            </div>
+            <div class="glc-reviews"><p>"Best gym in Batumi — the squat racks are always available."</p></div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <button class="glc-btn glc-btn-outline" onclick="focusMarker(1)">📍 Map</button>
+              <a href="https://www.google.com/maps/search/?api=1&query=Rule+Fitness+Batumi" target="_blank" class="glc-btn glc-btn-outline">↗ Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="gym-list-card" data-id="2" data-city="batumi" data-rating="4.5" data-budget="budget" data-type="cardio">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=OLYMPIA')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div><h3>Olympia Fitness</h3><p class="glc-meta">Batumi · Budget · Cardio</p><p class="glc-desc">Affordable, clean, solid cardio section and free weights area.</p></div>
+              <div class="glc-rating"><span class="stars">★ 4.5</span><span class="price-tag budget">Budget</span></div>
+            </div>
+            <div class="glc-reviews"><p>"Perfect for students — cheap and does everything you need."</p></div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <button class="glc-btn glc-btn-outline" onclick="focusMarker(2)">📍 Map</button>
+              <a href="https://www.google.com/maps/search/?api=1&query=Olympia+Fitness+Batumi" target="_blank" class="glc-btn glc-btn-outline">↗ Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="gym-list-card" data-id="3" data-city="tbilisi" data-rating="4.9" data-budget="premium" data-type="crossfit">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=GLADIATOR')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div><h3>Gladiator Fitness</h3><p class="glc-meta">Tbilisi · Premium · CrossFit</p><p class="glc-desc">World-class CrossFit boxes, Olympic lifting platforms, elite coaching.</p></div>
+              <div class="glc-rating"><span class="stars">★ 4.9</span><span class="price-tag premium">Premium</span></div>
+            </div>
+            <div class="glc-reviews"><p>"The CrossFit classes here are insane — in the best way."</p></div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <button class="glc-btn glc-btn-outline" onclick="focusMarker(3)">📍 Map</button>
+              <a href="https://www.google.com/maps/search/?api=1&query=Gladiator+Fitness+Tbilisi" target="_blank" class="glc-btn glc-btn-outline">↗ Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="gym-list-card" data-id="4" data-city="batumi" data-rating="4.7" data-budget="budget" data-type="boxing">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=EXTREME')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div><h3>Extreme Fit</h3><p class="glc-meta">Batumi · Budget · Boxing / MMA</p><p class="glc-desc">No-frills hardcore training with heavy bags and a dedicated boxing ring.</p></div>
+              <div class="glc-rating"><span class="stars">★ 4.7</span><span class="price-tag budget">Budget</span></div>
+            </div>
+            <div class="glc-reviews"><p>"Very raw atmosphere — you come here to work, not to show off."</p></div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <button class="glc-btn glc-btn-outline" onclick="focusMarker(4)">📍 Map</button>
+              <a href="https://www.google.com/maps/search/?api=1&query=Extreme+Fit+Batumi" target="_blank" class="glc-btn glc-btn-outline">↗ Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="gym-list-card" data-id="5" data-city="tbilisi" data-rating="4.2" data-budget="premium" data-type="yoga">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=REFORMER')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div><h3>Reformer Fitness</h3><p class="glc-meta">Tbilisi · Premium · Yoga / Pilates</p><p class="glc-desc">Pilates reformer machines, mindful movement classes, spa access.</p></div>
+              <div class="glc-rating"><span class="stars">★ 4.2</span><span class="price-tag premium">Premium</span></div>
+            </div>
+            <div class="glc-reviews"><p>"Changed my posture completely — the reformer classes are amazing."</p></div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <button class="glc-btn glc-btn-outline" onclick="focusMarker(5)">📍 Map</button>
+              <a href="https://www.google.com/maps/search/?api=1&query=Reformer+Fitness+Tbilisi" target="_blank" class="glc-btn glc-btn-outline">↗ Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="gym-list-card" data-id="6" data-city="tbilisi" data-rating="4.6" data-budget="budget" data-type="powerlifting">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=IRON')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div><h3>Iron Temple</h3><p class="glc-meta">Tbilisi · Budget · Powerlifting</p><p class="glc-desc">Underground powerlifting gym with competition-grade equipment. No mirrors, just iron.</p></div>
+              <div class="glc-rating"><span class="stars">★ 4.6</span><span class="price-tag budget">Budget</span></div>
+            </div>
+            <div class="glc-reviews"><p>"This is what a gym should feel like — raw and serious."</p></div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <button class="glc-btn glc-btn-outline" onclick="focusMarker(6)">📍 Map</button>
+              <a href="https://www.google.com/maps/search/?api=1&query=Iron+Temple+Tbilisi" target="_blank" class="glc-btn glc-btn-outline">↗ Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="gym-list-card" data-id="7" data-city="kutaisi" data-rating="4.4" data-budget="budget" data-type="yoga">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=FLOW')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div><h3>Flow Studio</h3><p class="glc-meta">Kutaisi · Budget · Yoga / Pilates</p><p class="glc-desc">Cosy yoga and stretching studio in the heart of Kutaisi.</p></div>
+              <div class="glc-rating"><span class="stars">★ 4.4</span><span class="price-tag budget">Budget</span></div>
+            </div>
+            <div class="glc-reviews"><p>"Exactly what Kutaisi needed — calm, clean and welcoming."</p></div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <button class="glc-btn glc-btn-outline" onclick="focusMarker(7)">📍 Map</button>
+              <a href="https://www.google.com/maps/search/?api=1&query=Flow+Studio+Kutaisi" target="_blank" class="glc-btn glc-btn-outline">↗ Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="gym-list-card" data-id="8" data-city="tbilisi" data-rating="4.8" data-budget="premium" data-type="boxing">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=ARENA')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div><h3>Arena Combat Club</h3><p class="glc-meta">Tbilisi · Premium · Boxing / MMA</p><p class="glc-desc">Professional MMA and boxing facility. Home to Georgia's top fighters.</p></div>
+              <div class="glc-rating"><span class="stars">★ 4.8</span><span class="price-tag premium">Premium</span></div>
+            </div>
+            <div class="glc-reviews"><p>"Coaches are actual champions. The sparring sessions are elite."</p></div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <button class="glc-btn glc-btn-outline" onclick="focusMarker(8)">📍 Map</button>
+              <a href="https://www.google.com/maps/search/?api=1&query=Arena+Combat+Tbilisi" target="_blank" class="glc-btn glc-btn-outline">↗ Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="gym-list-card" data-id="9" data-city="rustavi" data-rating="4.5" data-budget="budget" data-type="crossfit">
+          <div class="glc-img" style="background-image:url('https://placehold.co/120x100/111/DC2626?text=VELOCITY')"></div>
+          <div class="glc-body">
+            <div class="glc-top">
+              <div><h3>Velocity CrossFit</h3><p class="glc-meta">Rustavi · Budget · CrossFit</p><p class="glc-desc">Rustavi's first dedicated CrossFit box. Community-driven WODs and quarterly competitions.</p></div>
+              <div class="glc-rating"><span class="stars">★ 4.5</span><span class="price-tag budget">Budget</span></div>
+            </div>
+            <div class="glc-reviews"><p>"Finally a proper CrossFit box in Rustavi — and it's affordable!"</p></div>
+            <div class="glc-actions">
+              <a href="gym-place.html" class="glc-btn">View Details</a>
+              <button class="glc-btn glc-btn-outline" onclick="focusMarker(9)">📍 Map</button>
+              <a href="https://www.google.com/maps/search/?api=1&query=Velocity+CrossFit+Rustavi" target="_blank" class="glc-btn glc-btn-outline">↗ Maps</a>
+            </div>
+          </div>
+        </article>
+        
+        <div class="no-results" id="noResults">
+          <span class="nr-icon">🔍</span>
+          <h3>No Gyms Found</h3>
+          <p>Try adjusting your filters — there might be a perfect gym just a setting away.</p>
+        </div>
+      </div>
+
+      <!-- MAP PANEL -->
+      <aside class="gyms-map-panel">
+        <div class="map-controls">
+          <h3>Gym Locations</h3>
+          <span class="map-visible-count"><span id="mapCount">9</span> pins shown</span>
+        </div>
+        <div id="gymMap"></div>
+        <div class="map-legend">
+          <span class="legend-item"><span class="legend-dot premium-dot"></span> Premium</span>
+          <span class="legend-item"><span class="legend-dot budget-dot"></span> Budget</span>
+        </div>
+        <div style="margin-top:1rem;display:flex;flex-direction:column;gap:.6rem;">
+          <div style="background:var(--dark-card2);border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:.8rem;color:var(--text-muted);">Showing</span>
+            <span id="sidebarTotal" style="font-family:var(--font-display);font-size:1.4rem;color:var(--red);">9</span>
+          </div>
+          <div style="background:var(--dark-card2);border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:.8rem;color:var(--text-muted);">Cities</span>
+            <span id="citiesCount" style="font-family:var(--font-display);font-size:1.4rem;color:var(--text);">4</span>
+          </div>
+          <div style="background:var(--dark-card2);border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:.8rem;color:var(--text-muted);">Avg Rating</span>
+            <span id="avgRating" style="font-family:var(--font-display);font-size:1.4rem;color:#F59E0B;">4.6 ★</span>
+          </div>
+        </div>
+      </aside>
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="logo-icon">⚡</span><span>FITNESS HUB</span><p>Your journey starts here.</p></div>
+      <div class="footer-links"><h4>Navigate</h4><a href="index.html">Home</a><a href="gyms.html">Gym Finder</a><a href="gym-place.html">Gym Details</a><a href="index.html#contact">Contact</a></div>
+      <div class="footer-social"><h4>Follow Us</h4><div class="social-icons"><a href="https://www.instagram.com" target="_blank">📸</a><a href="https://www.facebook.com" target="_blank">👥</a><a href="https://twitter.com" target="_blank">🐦</a></div></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 FITNESS HUB. All rights reserved.</p></div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script>
+  // ═══════════════════════════════
+  //  DATA
+  // ═══════════════════════════════
+  const GYMS = [
+    { id:1, name:"Rule Fitness",       city:"batumi",  budget:"premium", type:"powerlifting", rating:4.8, lat:41.6469, lng:41.6431, desc:"Top-tier equipment, powerlifting area, sauna & recovery zone.", emoji:"🏋️" },
+    { id:2, name:"Olympia Fitness",    city:"batumi",  budget:"budget",  type:"cardio",       rating:4.5, lat:41.6395, lng:41.6378, desc:"Affordable, clean, solid cardio section and free weights.", emoji:"💪" },
+    { id:3, name:"Gladiator Fitness",  city:"tbilisi", budget:"premium", type:"crossfit",     rating:4.9, lat:41.6941, lng:44.8096, desc:"World-class CrossFit boxes, Olympic lifting platforms, elite coaching.", emoji:"⚔️" },
+    { id:4, name:"Extreme Fit",        city:"batumi",  budget:"budget",  type:"boxing",       rating:4.7, lat:41.6520, lng:41.6500, desc:"Hardcore training with heavy bags and a dedicated boxing ring.", emoji:"🥊" },
+    { id:5, name:"Reformer Fitness",   city:"tbilisi", budget:"premium", type:"yoga",         rating:4.2, lat:41.7010, lng:44.7925, desc:"Pilates reformer machines, mindful movement classes, spa access.", emoji:"🧘" },
+    { id:6, name:"Iron Temple",        city:"tbilisi", budget:"budget",  type:"powerlifting", rating:4.6, lat:41.6868, lng:44.8205, desc:"Underground powerlifting gym with competition-grade equipment.", emoji:"⚡" },
+    { id:7, name:"Flow Studio",        city:"kutaisi", budget:"budget",  type:"yoga",         rating:4.4, lat:42.2679, lng:42.6878, desc:"Cosy yoga and stretching studio in the heart of Kutaisi.", emoji:"🌿" },
+    { id:8, name:"Arena Combat Club",  city:"tbilisi", budget:"premium", type:"boxing",       rating:4.8, lat:41.7080, lng:44.7760, desc:"Professional MMA and boxing facility. Home to Georgia's top fighters.", emoji:"🥋" },
+    { id:9, name:"Velocity CrossFit",  city:"rustavi", budget:"budget",  type:"crossfit",     rating:4.5, lat:41.5490, lng:44.9800, desc:"Rustavi's first dedicated CrossFit box. Community-driven WODs.", emoji:"🔥" }
+  ];
+
+  // ═══════════════════════════════
+  //  MAP INIT
+  // ═══════════════════════════════
+  const map = L.map('gymMap', { center:[41.9, 43.4], zoom:7 });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>',
+    maxZoom:18
+  }).addTo(map);
+
+  const markers = {};
+
+  function makeIcon(gym) {
+    return L.divIcon({
+      className: '',
+      html: `<div class="gym-marker ${gym.budget}"><div class="gym-marker-inner">${gym.emoji}</div></div>`,
+      iconSize:[34,34], iconAnchor:[17,34], popupAnchor:[0,-36]
+    });
+  }
+
+  function makePopup(gym) {
+    const bl = gym.budget === 'premium' ? 'tag-premium' : 'tag-budget';
+    const bLabel = gym.budget.charAt(0).toUpperCase()+gym.budget.slice(1);
+    const tLabel = gym.type.charAt(0).toUpperCase()+gym.type.slice(1).replace(/-/g,' ');
+    const city   = gym.city.charAt(0).toUpperCase()+gym.city.slice(1);
+    return `<div class="map-popup">
+      <div class="map-popup-name">${gym.emoji} ${gym.name}</div>
+      <div class="map-popup-meta">${city}</div>
+      <div class="map-popup-rating">★ ${gym.rating}</div>
+      <div class="map-popup-desc">${gym.desc}</div>
+      <div class="map-popup-tags">
+        <span class="map-popup-tag ${bl}">${bLabel}</span>
+        <span class="map-popup-tag tag-type">${tLabel}</span>
+      </div>
+      <a href="gym-place.html" class="map-popup-btn">View Details →</a>
+    </div>`;
+  }
+
+  GYMS.forEach(gym => {
+    markers[gym.id] = L.marker([gym.lat, gym.lng], { icon: makeIcon(gym) })
+      .bindPopup(makePopup(gym), { maxWidth:260 })
+      .addTo(map);
+  });
+
+  // ═══════════════════════════════
+  //  FILTER
+  // ═══════════════════════════════
+  function applyFilters() {
+    const city   = document.getElementById('cityFilter').value;
+    const rating = parseFloat(document.getElementById('ratingFilter').value);
+    const budget = document.getElementById('budgetFilter').value;
+    const type   = document.getElementById('typeFilter').value;
+
+    let visible = 0;
+    const visibleGyms = [];
+
+    document.querySelectorAll('.gym-list-card').forEach(card => {
+      const gym = GYMS.find(g => g.id === parseInt(card.dataset.id));
+      const match =
+        (city   === 'all' || gym.city   === city)   &&
+        (gym.rating >= rating)                       &&
+        (budget === 'all' || gym.budget === budget)  &&
+        (type   === 'all' || gym.type   === type);
+
+      if (match) {
+        card.classList.remove('hidden');
+        card.style.animation = 'none'; void card.offsetHeight; card.style.animation = '';
+        if (!map.hasLayer(markers[gym.id])) markers[gym.id].addTo(map);
+        visible++;
+        visibleGyms.push(gym);
+      } else {
+        card.classList.add('hidden');
+        if (map.hasLayer(markers[gym.id])) map.removeLayer(markers[gym.id]);
+      }
+    });
+
+    // Fit map bounds to visible pins
+    if (visibleGyms.length > 0) {
+      const bounds = L.latLngBounds(visibleGyms.map(g => [g.lat, g.lng]));
+      map.fitBounds(bounds, { padding:[48,48], maxZoom:13 });
+    }
+
+    // Update UI counters
+    const n = visible;
+    document.getElementById('countNum').textContent      = n;
+    document.getElementById('mapCount').textContent      = n;
+    document.getElementById('sidebarTotal').textContent  = n;
+    document.getElementById('noResults').style.display   = n === 0 ? 'block' : 'none';
+    document.getElementById('citiesCount').textContent   = new Set(visibleGyms.map(g=>g.city)).size;
+    if (n > 0) {
+      const avg = (visibleGyms.reduce((s,g)=>s+g.rating,0)/n).toFixed(1);
+      document.getElementById('avgRating').textContent = avg + ' ★';
+    }
+
+    updatePills(city, rating, budget, type);
+    document.getElementById('gym-list').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  function updatePills(city, rating, budget, type) {
+    const c = document.getElementById('filterPills');
+    c.innerHTML = '';
+    const add = t => { const p=document.createElement('span'); p.className='filter-pill'; p.textContent=t; c.appendChild(p); };
+    if (city   !== 'all') add('📍 '+city.charAt(0).toUpperCase()+city.slice(1));
+    if (rating  > 0)      add('★ '+rating+'+');
+    if (budget !== 'all') add('💰 '+budget.charAt(0).toUpperCase()+budget.slice(1));
+    if (type   !== 'all') add('🏷 '+type.charAt(0).toUpperCase()+type.slice(1).replace(/-/g,' '));
+  }
+
+  // ═══════════════════════════════
+  //  FOCUS — "📍 Map" button
+  // ═══════════════════════════════
+  function focusMarker(id) {
+    const gym = GYMS.find(g => g.id === id);
+    if (!gym || !map.hasLayer(markers[id])) return;
+    document.querySelector('.gyms-map-panel').scrollIntoView({ behavior:'smooth', block:'center' });
+    setTimeout(() => {
+      map.setView([gym.lat, gym.lng], 15, { animate:true });
+      markers[id].openPopup();
+    }, 420);
+  }
+
+  // Live filter on every dropdown change
+  document.querySelectorAll('.filter-bar select').forEach(s => s.addEventListener('change', applyFilters));
+  </script>
+</body>
+</html>

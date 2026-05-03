@@ -23,9 +23,9 @@
         <li><a href="gyms.html" class="nav-link">Places</a></li>
         <li><a href="#schedule" class="nav-link">Schedule</a></li>
         <li><a href="#instructors-section" class="nav-link">Instructors</a></li>
-       <li><a href="#contact" class="nav-link">Contact</a></li>
-<li><a href="account.html" class="nav-link nav-account">Account</a></li>
-<li><a href="gym-place.html" class="nav-link nav-cta">Find a Gym</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="account.html" class="nav-link">Account</a></li>
+        <li><a href="gym-place.html" class="nav-link nav-cta">Find a Gym</a></li>
       </ul>
       <!-- Mobile hamburger (CSS only toggle trick) -->
       <label class="hamburger" for="mobile-toggle">
@@ -38,7 +38,6 @@
         <li><a href="#schedule">Schedule</a></li>
         <li><a href="#instructors-section">Instructors</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="account.html">Account</a></li>
         <li><a href="gym-place.html">Find a Gym</a></li>
       </ul>
     </nav>
@@ -63,8 +62,6 @@
 
       <!-- DIVIDER — flex child so it moves with the panels -->
       <div class="curtain-divider" aria-hidden="true">
-        <div class="divider-line"></div>
-        <span class="divider-logo">FH</span>
         <div class="divider-line"></div>
       </div>
 
@@ -125,30 +122,73 @@
       </div>
       <div class="cards-grid">
         <article class="gym-card">
-          <div class="gym-card-img" style="background-image:url('https://placehold.co/400x220/0A0A0A/DC2626?text=RULE+FITNESS')"></div>
-          <div class="gym-card-body">
-            <h3>Rule Fitness</h3>
-            <p class="gym-meta">Batumi · Premium</p>
-            <span class="gym-rating">★ 4.8</span>
-            <a href="gym-place.html" class="gym-card-btn">View Details</a>
+          <div class="gym-card-inner">
+            <!-- Visual panel (default visible) -->
+            <div class="gym-card-visual">
+              <div class="gym-card-watermark">Rule Fitness</div>
+              <div class="gym-card-visual-info">
+                <span class="gym-icon">🏋️</span>
+                <p class="gym-name-big">Rule Fitness</p>
+                <p class="gym-location-tag">📍 Batumi</p>
+              </div>
+              <div class="gym-card-scroll-hint">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <!-- Body panel (revealed on hover) -->
+            <div class="gym-card-body">
+              <h3>Rule Fitness</h3>
+              <p class="gym-meta">Batumi · Premium</p>
+              <p class="gym-rating">★ 4.8 <span style="color:var(--red);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;background:rgba(220,38,38,0.12);padding:0.15rem 0.5rem;border-radius:4px;border:1px solid rgba(220,38,38,0.3);">PREMIUM</span></p>
+              <p class="gym-card-desc">Top-tier equipment, powerlifting platforms, sauna &amp; full recovery zone. The best in Batumi.</p>
+              <a href="gym-place.html" class="gym-card-btn">View Details →</a>
+            </div>
           </div>
         </article>
+
         <article class="gym-card">
-          <div class="gym-card-img" style="background-image:url('https://placehold.co/400x220/0A0A0A/DC2626?text=OLYMPIA+FITNESS')"></div>
-          <div class="gym-card-body">
-            <h3>Olympia Fitness</h3>
-            <p class="gym-meta">Batumi · Budget</p>
-            <span class="gym-rating">★ 4.5</span>
-            <a href="gym-place.html" class="gym-card-btn">View Details</a>
+          <div class="gym-card-inner">
+            <div class="gym-card-visual">
+              <div class="gym-card-watermark">Olympia Fitness</div>
+              <div class="gym-card-visual-info">
+                <span class="gym-icon">💪</span>
+                <p class="gym-name-big">Olympia Fitness</p>
+                <p class="gym-location-tag">📍 Batumi</p>
+              </div>
+              <div class="gym-card-scroll-hint">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="gym-card-body">
+              <h3>Olympia Fitness</h3>
+              <p class="gym-meta">Batumi · Budget</p>
+              <p class="gym-rating">★ 4.5 <span style="color:#4ADE80;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;background:rgba(74,222,128,0.08);padding:0.15rem 0.5rem;border-radius:4px;border:1px solid rgba(74,222,128,0.25);">BUDGET</span></p>
+              <p class="gym-card-desc">Affordable, clean, solid cardio section and free weights area. Perfect for students and daily trainers.</p>
+              <a href="gym-place.html" class="gym-card-btn">View Details →</a>
+            </div>
           </div>
         </article>
+
         <article class="gym-card">
-          <div class="gym-card-img" style="background-image:url('https://placehold.co/400x220/0A0A0A/DC2626?text=GLADIATOR+FIT')"></div>
-          <div class="gym-card-body">
-            <h3>Gladiator Fitness</h3>
-            <p class="gym-meta">Tbilisi · Premium</p>
-            <span class="gym-rating">★ 4.9</span>
-            <a href="gym-place.html" class="gym-card-btn">View Details</a>
+          <div class="gym-card-inner">
+            <div class="gym-card-visual">
+              <div class="gym-card-watermark">Gladiator Fitness</div>
+              <div class="gym-card-visual-info">
+                <span class="gym-icon">⚔️</span>
+                <p class="gym-name-big">Gladiator Fitness</p>
+                <p class="gym-location-tag">📍 Tbilisi</p>
+              </div>
+              <div class="gym-card-scroll-hint">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="gym-card-body">
+              <h3>Gladiator Fitness</h3>
+              <p class="gym-meta">Tbilisi · Premium</p>
+              <p class="gym-rating">★ 4.9 <span style="color:var(--red);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;background:rgba(220,38,38,0.12);padding:0.15rem 0.5rem;border-radius:4px;border:1px solid rgba(220,38,38,0.3);">PREMIUM</span></p>
+              <p class="gym-card-desc">World-class CrossFit boxes, Olympic lifting platforms and elite coaching. Tbilisi's #1 rated gym.</p>
+              <a href="gym-place.html" class="gym-card-btn">View Details →</a>
+            </div>
           </div>
         </article>
       </div>
@@ -272,14 +312,14 @@
       </div>
       <div class="map-wrapper">
         <iframe
-  src="https://www.google.com/maps?q=Gyms+Georgia&output=embed"
-  width="100%"
-  height="400"
-  style="border:0;"
-  allowfullscreen=""
-  loading="lazy"
-  title="Fitness Hub locations in Georgia"
-></iframe>
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d95986.04028507668!2d44.8130!3d41.6940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sge!4v1700000000000"
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          title="Fitness Hub locations in Georgia"
+        ></iframe>
       </div>
     </section>
 
