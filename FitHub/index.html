@@ -8,26 +8,153 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css" />
+
+
+  <style>
+    
+  
+    .nav-container {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important; 
+      width: 100% !important;
+      max-width: 100% !important; 
+      padding: 0.5rem 2rem !important; 
+      box-sizing: border-box !important;
+    } 
+    .nav-logo {
+      margin-right: auto !important; 
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      margin-left: auto !important; 
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /*  header gasworebuli saboloo / importantebi gamoyenebulia overridebistvis */
+    .section-header {
+      display: block !important;        
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+    .section-subtitle {
+      display: block !important;
+      margin-top: 0.5rem !important;
+      text-align: left !important;
+      width: auto !important;
+      margin-left: 0 !important;
+    }
+    
+    #places-section .section-header {
+      display: flex !important;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    /* IFRAME ADGILISTVIS */
+    .map-section-layout {
+      display: flex;
+      gap: 1rem;
+      align-items: stretch;
+      flex-wrap: nowrap;
+      background: #0a0a0a;
+      padding: 1rem;
+      border-radius: 12px;
+    }
+    .map-iframe-wrap {
+      flex: 3;
+      min-width: 300px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #262626;
+    }
+    .map-iframe-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 450px;
+      filter: contrast(1.2);
+      border: 0;
+    }
+    .map-locations-panel {
+      flex: 1;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding-right: 0;
+    }
+    .map-locations-panel::-webkit-scrollbar { width: 4px; }
+    .map-locations-panel::-webkit-scrollbar-track { background: #0a0a0a; }
+    .map-locations-panel::-webkit-scrollbar-thumb { background: #262626; border-radius: 10px; }
+
+    .map-loc-card {
+      background: #0f0f0f;
+      border: 1px solid #1f1f1f;
+      border-radius: 6px;
+      padding: 0.75rem;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .map-loc-card:hover {
+      border-color: #DC2626;
+      background: #141414;
+    }
+    .mlc-top { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; }
+    .mlc-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .mlc-dot.red   { background: #DC2626; box-shadow: 0 0 6px #DC2626; }
+    .mlc-dot.green { background: #4ADE80; box-shadow: 0 0 6px #4ADE80; }
+    .mlc-name { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; color: #fff; }
+    .mlc-badge {
+      margin-left: auto;
+      font-size: 0.55rem;
+      font-weight: 800;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+    .mlc-badge.premium { color: #DC2626; border: 1px solid #DC2626; background: rgba(220,38,38,0.05); }
+    .mlc-badge.budget  { color: #4ADE80; border: 1px solid #4ADE80; background: rgba(74,222,128,0.05); }
+    .mlc-city, .mlc-addr { font-size: 0.7rem; color: #737373; margin-left: 0.9rem; }
+    .mlc-open-btn {
+      display: block;
+      margin-top: 0.6rem;
+      margin-left: 0.9rem;
+      font-size: 0.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #DC2626;
+      text-decoration: none;
+    }
+    /* @media */
+    @media (max-width: 992px) {
+      .map-section-layout { flex-direction: column; }
+      .map-locations-panel { max-height: none; width: 100%; }
+      .map-iframe-wrap { height: 300px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ===================== HEADER / NAV ===================== -->
   <header>
     <nav class="nav-container">
       <a href="index.html" class="nav-logo">
-        <span class="logo-icon">⚡</span>
-        FITNESS HUB
+        <span class="logo-icon">⚡</span>FITNESS HUB
       </a>
       <ul class="nav-links">
-        <li><a href="#hero" class="nav-link">Home</a></li>
-        <li><a href="gyms.html" class="nav-link">Places</a></li>
-        <li><a href="#schedule" class="nav-link">Schedule</a></li>
+        <li><a href="#hero"               class="nav-link">Home</a></li>
+        <li><a href="gyms.html"           class="nav-link">Places</a></li>
+        <li><a href="#schedule"           class="nav-link">Schedule</a></li>
         <li><a href="#instructors-section" class="nav-link">Instructors</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-        <li><a href="account.html" class="nav-link">Account</a></li>
-        <li><a href="gym-place.html" class="nav-link nav-cta">Find a Gym</a></li>
+        <li><a href="#contact"            class="nav-link">Contact</a></li>
+        <li><a href="account.html"        class="nav-link nav-cta">Account</a></li>
       </ul>
-      <!-- Mobile hamburger (CSS only toggle trick) -->
       <label class="hamburger" for="mobile-toggle">
         <span></span><span></span><span></span>
       </label>
@@ -38,6 +165,7 @@
         <li><a href="#schedule">Schedule</a></li>
         <li><a href="#instructors-section">Instructors</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="account.html">Account</a></li>
         <li><a href="gym-place.html">Find a Gym</a></li>
       </ul>
     </nav>
@@ -45,10 +173,8 @@
 
   <main>
 
-    <!-- ===================== SPLIT CURTAIN HERO ===================== -->
+    <!-- HERO -->
     <section id="hero" class="hero-split">
-
-      <!-- LEFT PANEL — GYM PLACES -->
       <div class="hero-panel panel-left">
         <div class="panel-bg panel-bg-left"></div>
         <div class="panel-overlay overlay-left"></div>
@@ -59,13 +185,9 @@
           <a href="gyms.html" class="panel-btn">Browse Gyms →</a>
         </div>
       </div>
-
-      <!-- DIVIDER — flex child so it moves with the panels -->
       <div class="curtain-divider" aria-hidden="true">
         <div class="divider-line"></div>
       </div>
-
-      <!-- RIGHT PANEL — INSTRUCTORS -->
       <div class="hero-panel panel-right">
         <div class="panel-bg panel-bg-right"></div>
         <div class="panel-overlay overlay-right"></div>
@@ -76,10 +198,9 @@
           <a href="#instructors-section" class="panel-btn">Meet Trainers →</a>
         </div>
       </div>
-
     </section>
 
-    <!-- ===================== BOOK A SESSION BANNER ===================== -->
+    <!-- Book banner - dasajavshni -->
     <section class="book-banner">
       <div class="book-banner-inner">
         <div class="book-banner-text">
@@ -90,7 +211,7 @@
       </div>
     </section>
 
-    <!-- ===================== FEATURES STRIP ===================== -->
+    <!-- features strip - ras vtavazobt -->
     <section class="features-strip">
       <div class="feature-item">
         <span class="feature-icon">🏋️</span>
@@ -114,87 +235,66 @@
       </div>
     </section>
 
-    <!-- ===================== FEATURED GYM PLACES ===================== -->
+    <!-- gym card-ebi modzraobit scrollebit -->
     <section id="places-section" class="section-container">
       <div class="section-header">
         <h2 class="section-title">Featured <span class="accent">Fitness Centres</span></h2>
         <a href="gyms.html" class="section-link">See All →</a>
       </div>
       <div class="cards-grid">
+
         <article class="gym-card">
           <div class="gym-card-inner">
-            <!-- Visual panel (default visible) -->
-            <div class="gym-card-visual">
-              <div class="gym-card-watermark">Rule Fitness</div>
-              <div class="gym-card-visual-info">
-                <span class="gym-icon">🏋️</span>
-                <p class="gym-name-big">Rule Fitness</p>
-                <p class="gym-location-tag">📍 Batumi</p>
-              </div>
-              <div class="gym-card-scroll-hint">
-                <span></span><span></span><span></span>
-              </div>
+            <div class="gym-card-visual" style="background-image:url('Images/Rulefit.png'); background-size:cover; background-position:center;">
+              <div class="gym-card-visual-info"></div>
+              <div class="gym-card-scroll-hint"><span></span><span></span><span></span></div>
             </div>
-            <!-- Body panel (revealed on hover) -->
             <div class="gym-card-body">
               <h3>Rule Fitness</h3>
               <p class="gym-meta">Batumi · Premium</p>
-              <p class="gym-rating">★ 4.8 <span style="color:var(--red);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;background:rgba(220,38,38,0.12);padding:0.15rem 0.5rem;border-radius:4px;border:1px solid rgba(220,38,38,0.3);">PREMIUM</span></p>
-              <p class="gym-card-desc">Top-tier equipment, powerlifting platforms, sauna &amp; full recovery zone. The best in Batumi.</p>
-              <a href="gym-place.html" class="gym-card-btn">View Details →</a>
+              <span class="gym-rating">★ 4.8</span>
+              <p class="gym-card-desc">Top-tier equipment, powerlifting area, sauna &amp; recovery zone.</p>
+              <a href="gym-place.html" class="gym-card-btn">View Details</a>
             </div>
           </div>
         </article>
 
         <article class="gym-card">
           <div class="gym-card-inner">
-            <div class="gym-card-visual">
-              <div class="gym-card-watermark">Olympia Fitness</div>
-              <div class="gym-card-visual-info">
-                <span class="gym-icon">💪</span>
-                <p class="gym-name-big">Olympia Fitness</p>
-                <p class="gym-location-tag">📍 Batumi</p>
-              </div>
-              <div class="gym-card-scroll-hint">
-                <span></span><span></span><span></span>
-              </div>
+            <div class="gym-card-visual" style="background-image:url('Images/Olympiafit.jpg'); background-size:cover; background-position:center;">
+              <div class="gym-card-visual-info"></div>
+              <div class="gym-card-scroll-hint"><span></span><span></span><span></span></div>
             </div>
             <div class="gym-card-body">
               <h3>Olympia Fitness</h3>
               <p class="gym-meta">Batumi · Budget</p>
-              <p class="gym-rating">★ 4.5 <span style="color:#4ADE80;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;background:rgba(74,222,128,0.08);padding:0.15rem 0.5rem;border-radius:4px;border:1px solid rgba(74,222,128,0.25);">BUDGET</span></p>
-              <p class="gym-card-desc">Affordable, clean, solid cardio section and free weights area. Perfect for students and daily trainers.</p>
-              <a href="gym-place.html" class="gym-card-btn">View Details →</a>
+              <span class="gym-rating">★ 4.5</span>
+              <p class="gym-card-desc">Affordable, clean, solid cardio section and free weights area.</p>
+              <a href="gym-place.html" class="gym-card-btn">View Details</a>
             </div>
           </div>
         </article>
 
         <article class="gym-card">
           <div class="gym-card-inner">
-            <div class="gym-card-visual">
-              <div class="gym-card-watermark">Gladiator Fitness</div>
-              <div class="gym-card-visual-info">
-                <span class="gym-icon">⚔️</span>
-                <p class="gym-name-big">Gladiator Fitness</p>
-                <p class="gym-location-tag">📍 Tbilisi</p>
-              </div>
-              <div class="gym-card-scroll-hint">
-                <span></span><span></span><span></span>
-              </div>
+            <div class="gym-card-visual" style="background-image:url('Images/Gladiatorfit.jpg'); background-size:cover; background-position:center;">
+              <div class="gym-card-visual-info"></div>
+              <div class="gym-card-scroll-hint"><span></span><span></span><span></span></div>
             </div>
             <div class="gym-card-body">
               <h3>Gladiator Fitness</h3>
               <p class="gym-meta">Tbilisi · Premium</p>
-              <p class="gym-rating">★ 4.9 <span style="color:var(--red);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;background:rgba(220,38,38,0.12);padding:0.15rem 0.5rem;border-radius:4px;border:1px solid rgba(220,38,38,0.3);">PREMIUM</span></p>
-              <p class="gym-card-desc">World-class CrossFit boxes, Olympic lifting platforms and elite coaching. Tbilisi's #1 rated gym.</p>
-              <a href="gym-place.html" class="gym-card-btn">View Details →</a>
+              <span class="gym-rating">★ 4.9</span>
+              <p class="gym-card-desc">World-class CrossFit boxes, Olympic lifting platforms, elite coaching.</p>
+              <a href="gym-place.html" class="gym-card-btn">View Details</a>
             </div>
           </div>
         </article>
+
       </div>
     </section>
 
-    <!-- ===================== INSTRUCTORS ===================== -->
+    <!-- INSTRUCTORS -->
     <section id="instructors-section" class="section-container section-dark">
       <div class="section-header">
         <h2 class="section-title">Meet Our <span class="accent">Instructors</span></h2>
@@ -202,7 +302,7 @@
       </div>
       <div class="instructors-grid">
         <article class="instructor-card">
-          <div class="instructor-img" style="background-image:url('https://placehold.co/300x320/111/DC2626?text=TRAINER')"></div>
+          <div class="instructor-img" style="background-image:url('Images/TrainerALEX.png')"></div>
           <div class="instructor-info">
             <h3>Alex Beridze</h3>
             <p class="instructor-spec">Strength &amp; Conditioning</p>
@@ -211,7 +311,7 @@
           </div>
         </article>
         <article class="instructor-card">
-          <div class="instructor-img" style="background-image:url('https://placehold.co/300x320/111/DC2626?text=TRAINER')"></div>
+          <div class="instructor-img" style="background-image:url('Images/TrainerNINO.png')"></div>
           <div class="instructor-info">
             <h3>Nino Kvaratskhelia</h3>
             <p class="instructor-spec">Yoga &amp; Flexibility</p>
@@ -220,7 +320,7 @@
           </div>
         </article>
         <article class="instructor-card">
-          <div class="instructor-img" style="background-image:url('https://placehold.co/300x320/111/DC2626?text=TRAINER')"></div>
+          <div class="instructor-img" style="background-image:url('Images/TrainerGIO.png')"></div>
           <div class="instructor-info">
             <h3>Giorgi Tabatadze</h3>
             <p class="instructor-spec">CrossFit &amp; HIIT</p>
@@ -229,7 +329,7 @@
           </div>
         </article>
         <article class="instructor-card">
-          <div class="instructor-img" style="background-image:url('https://placehold.co/300x320/111/DC2626?text=TRAINER')"></div>
+          <div class="instructor-img" style="background-image:url('Images/TrainerMARIAM.png')"></div>
           <div class="instructor-info">
             <h3>Mariam Dvalishvili</h3>
             <p class="instructor-spec">Cardio &amp; Nutrition</p>
@@ -240,16 +340,15 @@
       </div>
     </section>
 
-    <!-- ===================== SCHEDULE + PRICING TABLE ===================== -->
+    <!-- SCHEDULE  -->
     <section id="schedule" class="section-container">
       <div class="section-header">
         <h2 class="section-title">Weekly <span class="accent">Schedule</span></h2>
-        <p class="section-subtitle">Pick your trainer and time slot — May 2025</p>
+        <p class="section-subtitle">Pick your trainer and time slot — May 2026</p>
       </div>
-
       <div class="table-wrapper">
         <table class="schedule-table">
-          <caption>Training Schedule — May 2025 · All times in Tbilisi (GMT+4)</caption>
+          <caption>Training Schedule — May 2026 · All times in Tbilisi (GMT+4)</caption>
           <thead>
             <tr>
               <th>Day / Date</th>
@@ -289,7 +388,6 @@
               <td class="slot-available">15:00–16:00<br><small>Available</small></td>
             </tr>
           </tbody>
-          <!-- Membership pricing row pinned at the bottom -->
           <tfoot>
             <tr class="pricing-row">
               <td class="pricing-label">💳 Membership<br><small>per month</small></td>
@@ -304,32 +402,72 @@
       <p class="table-note">🟢 Available = open to book &nbsp;|&nbsp; 🔴 Booked = session taken</p>
     </section>
 
-    <!-- ===================== MAP SECTION ===================== -->
+    <!-- RUKA IFRAME -->
     <section id="map-section" class="section-container section-dark">
       <div class="section-header">
         <h2 class="section-title">Find Us on <span class="accent">the Map</span></h2>
         <p class="section-subtitle">Our partner gyms across Georgia</p>
       </div>
-      <div class="map-wrapper">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d95986.04028507668!2d44.8130!3d41.6940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sge!4v1700000000000"
-          width="100%"
-          height="400"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          title="Fitness Hub locations in Georgia"
-        ></iframe>
+      <div class="map-section-layout">
+        <div class="map-iframe-wrap">
+          <iframe
+            name="gym-map"
+            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d500000!2d44.78!3d41.71!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sgyms+in+georgia!5e0!3m2!1sen!2sge!4v1714890000000"
+            title="Fitness Hub gym locations"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <aside class="map-locations-panel">
+          <a href="#" class="map-loc-card">
+            <div class="mlc-top">
+              <span class="mlc-dot red"></span>
+              <span class="mlc-name">Gladiator Fitness</span>
+              <span class="mlc-badge premium">Premium</span>
+            </div>
+            <p class="mlc-city">📍 Tbilisi, Georgia</p>
+            <p class="mlc-addr">14 Rustaveli Ave, Tbilisi</p>
+            <span class="mlc-open-btn">Open in Maps ↗</span>
+          </a>
+          <a href="#" class="map-loc-card">
+            <div class="mlc-top">
+              <span class="mlc-dot red"></span>
+              <span class="mlc-name">Reformer Fitness</span>
+              <span class="mlc-badge premium">Premium</span>
+            </div>
+            <p class="mlc-city">📍 Tbilisi, Georgia</p>
+            <p class="mlc-addr">Vake District, Tbilisi</p>
+            <span class="mlc-open-btn">Open in Maps ↗</span>
+          </a>
+          <a href="#" class="map-loc-card">
+            <div class="mlc-top">
+              <span class="mlc-dot red"></span>
+              <span class="mlc-name">Rule Fitness</span>
+              <span class="mlc-badge premium">Premium</span>
+            </div>
+            <p class="mlc-city">📍 Batumi, Georgia</p>
+            <p class="mlc-addr">12 Chavchavadze St, Batumi</p>
+            <span class="mlc-open-btn">Open in Maps ↗</span>
+          </a>
+          <a href="#" class="map-loc-card">
+            <div class="mlc-top">
+              <span class="mlc-dot green"></span>
+              <span class="mlc-name">Olympia Fitness</span>
+              <span class="mlc-badge budget">Budget</span>
+            </div>
+            <p class="mlc-city">📍 Batumi, Georgia</p>
+            <p class="mlc-addr">5 Gogebashvili St, Batumi</p>
+            <span class="mlc-open-btn">Open in Maps ↗</span>
+          </a>
+        </aside>
       </div>
     </section>
 
-    <!-- ===================== CONTACT / REGISTRATION FORM ===================== -->
+    <!-- Contact informacia -->
     <section id="contact" class="section-container">
       <div class="section-header">
         <h2 class="section-title">Book a Session &amp; <span class="accent">Register</span></h2>
         <p class="section-subtitle">Fill in the form and we'll get back to you within 24 hours</p>
       </div>
-
       <div class="form-layout">
         <form class="contact-form" action="#" method="post">
           <div class="form-row">
@@ -342,12 +480,10 @@
               <input type="text" id="lname" name="lname" placeholder="e.g. Beridze" required />
             </div>
           </div>
-
           <div class="form-group">
             <label for="email">Email Address *</label>
             <input type="email" id="email" name="email" placeholder="you@example.com" required />
           </div>
-
           <div class="form-group">
             <label for="trainer">Choose a Trainer *</label>
             <select id="trainer" name="trainer" required>
@@ -358,50 +494,30 @@
               <option value="mariam">Mariam Dvalishvili — Cardio &amp; Nutrition</option>
             </select>
           </div>
-
           <div class="form-group">
             <label>Preferred Training Time</label>
             <div class="radio-group">
-              <label class="radio-label">
-                <input type="radio" name="time" value="morning" /> Morning (7–12)
-              </label>
-              <label class="radio-label">
-                <input type="radio" name="time" value="afternoon" /> Afternoon (12–17)
-              </label>
-              <label class="radio-label">
-                <input type="radio" name="time" value="evening" /> Evening (17–21)
-              </label>
+              <label class="radio-label"><input type="radio" name="time" value="morning" /> Morning (7–12)</label>
+              <label class="radio-label"><input type="radio" name="time" value="afternoon" /> Afternoon (12–17)</label>
+              <label class="radio-label"><input type="radio" name="time" value="evening" /> Evening (17–21)</label>
             </div>
           </div>
-
           <div class="form-group">
             <label>Goals (select all that apply)</label>
             <div class="checkbox-group">
-              <label class="checkbox-label">
-                <input type="checkbox" name="goals" value="strength" /> Build Strength
-              </label>
-              <label class="checkbox-label">
-                <input type="checkbox" name="goals" value="weight" /> Lose Weight
-              </label>
-              <label class="checkbox-label">
-                <input type="checkbox" name="goals" value="flexibility" /> Improve Flexibility
-              </label>
-              <label class="checkbox-label">
-                <input type="checkbox" name="goals" value="endurance" /> Boost Endurance
-              </label>
+              <label class="checkbox-label"><input type="checkbox" name="goals" value="strength" /> Build Strength</label>
+              <label class="checkbox-label"><input type="checkbox" name="goals" value="weight" /> Lose Weight</label>
+              <label class="checkbox-label"><input type="checkbox" name="goals" value="flexibility" /> Improve Flexibility</label>
+              <label class="checkbox-label"><input type="checkbox" name="goals" value="endurance" /> Boost Endurance</label>
             </div>
           </div>
-
           <div class="form-group">
             <label for="motivation">Motivation / Special Requests</label>
             <textarea id="motivation" name="motivation" rows="5"
               placeholder="Tell us about your fitness goals, injuries, or any special requirements…"></textarea>
           </div>
-
           <button type="submit" class="form-submit">Send My Request</button>
         </form>
-
-        <!-- Side info card -->
         <aside class="form-aside">
           <h3>Why Join Us?</h3>
           <ul class="aside-list">
@@ -422,7 +538,6 @@
 
   </main>
 
-  <!-- ===================== FOOTER ===================== -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
@@ -452,7 +567,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 FITNESS HUB. All rights reserved.</p>
+      <p>&copy; 2026 FITNESS HUB. All rights reserved.</p>
     </div>
   </footer>
 

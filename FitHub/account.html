@@ -8,762 +8,185 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css" />
-
+  <!-- SCRIPT DASRULEBULI ( style.css dan amoshlili ( DONE ) )-->
+   <!-- PIRVELI 3 .nav - ebi dafixulia zemota bar-->
   <style>
-    /* ══════════════════════════════════════════
-       ACCOUNT PAGE — EXTENDED STYLES
-       CSS-only modals + enhanced UI
-    ══════════════════════════════════════════ */
+    
+    .nav-container {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important; /* Pushes logo left, links right */
+      width: 100% !important;
+      max-width: 100% !important; /* Forces it to ignore any 'grid' or 'container' limits */
+      padding: 0 2.5rem !important; /* Keeps it from touching the absolute glass edge */
+      box-sizing: border-box !important;
+    }
 
-    /* ── Modal Trigger Checkboxes (hidden) ── */
-    .modal-toggle { display: none; }
+    .nav-logo {
+      margin-right: auto !important;
+    }
 
-    /* ── Modal Backdrop ── */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.82);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      z-index: 999;
+    .nav-links {
+      margin-left: auto !important;
       display: flex;
       align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
+      gap: 1.5rem; /* Adds nice spacing between your menu items */
     }
 
-    /* Show modal when checkbox checked */
-    #modal-login:checked    ~ .modal-overlay-login,
-    #modal-signup:checked   ~ .modal-overlay-signup,
-    #modal-forgot:checked   ~ .modal-overlay-forgot,
-    #modal-signout:checked  ~ .modal-overlay-signout {
-      opacity: 1;
-      pointer-events: all;
+    /* Keep the hamburger hidden on desktop */
+    .hamburger {
+      margin-left: 1.5rem;
     }
+  .modal-toggle { display: none; }
 
-    /* ── Modal Box ── */
-    .modal-box {
-      background: #111;
-      border: 1px solid rgba(220,38,38,0.3);
-      border-radius: 20px;
-      padding: 2.5rem 2.25rem 2rem;
-      width: 100%;
-      max-width: 440px;
-      position: relative;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px rgba(220,38,38,0.12);
-      transform: translateY(30px) scale(0.96);
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
-      opacity: 0;
-    }
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.82);
+    backdrop-filter: blur(6px);
+    z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  #modal-forgot:checked  ~ .modal-overlay-forgot,
+  #modal-signout:checked ~ .modal-overlay-signout { opacity: 1; pointer-events: all; }
 
-    #modal-login:checked    ~ .modal-overlay-login    .modal-box,
-    #modal-signup:checked   ~ .modal-overlay-signup   .modal-box,
-    #modal-forgot:checked   ~ .modal-overlay-forgot   .modal-box,
-    #modal-signout:checked  ~ .modal-overlay-signout  .modal-box {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
+  .modal-box {
+    background: #111; border: 1px solid rgba(220,38,38,0.3); border-radius: 20px;
+    padding: 2.5rem 2.25rem 2rem; width: 100%; max-width: 440px;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px rgba(220,38,38,0.12);
+    transform: translateY(30px) scale(0.96);
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
+    opacity: 0;
+  }
+  #modal-forgot:checked  ~ .modal-overlay-forgot  .modal-box,
+  #modal-signout:checked ~ .modal-overlay-signout .modal-box { transform: translateY(0) scale(1); opacity: 1; }
 
-    /* Close button (label targeting toggle) */
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      width: 32px;
-      height: 32px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1rem;
-      color: #9CA3AF;
-      transition: background 0.2s, color 0.2s, transform 0.15s;
-      user-select: none;
-      line-height: 1;
-    }
-    .modal-close:hover { background: rgba(220,38,38,0.15); color: #DC2626; transform: scale(1.1); }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1rem; color: #9CA3AF;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    user-select: none;
+  }
+  .modal-close:hover { background: rgba(220,38,38,0.15); color: #DC2626; transform: scale(1.1); }
+  .modal-backdrop-close { position: absolute; inset: 0; cursor: pointer; z-index: -1; }
 
-    /* Close backdrop click area */
-    .modal-backdrop-close {
-      position: absolute;
-      inset: 0;
-      cursor: pointer;
-      z-index: -1;
-    }
+  .modal-logo { display: flex; align-items: center; gap: 0.5rem; font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.15em; color: #DC2626; margin-bottom: 1.5rem; }
+  .modal-box h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.06em; color: #F3F4F6; margin-bottom: 0.3rem; }
+  .modal-box .modal-sub { font-size: 0.85rem; color: #9CA3AF; margin-bottom: 1.75rem; }
 
-    .modal-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.2rem;
-      letter-spacing: 0.15em;
-      color: #DC2626;
-      margin-bottom: 1.5rem;
-    }
-    .modal-logo span { font-size: 1rem; }
+  .modal-form { display: flex; flex-direction: column; gap: 1rem; }
+  .modal-field { display: flex; flex-direction: column; gap: 0.35rem; }
+  .modal-field label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6B7280; }
+  .modal-field input {
+    background: #161616; border: 1px solid #1f2937; border-radius: 10px;
+    padding: 0.75rem 1rem; color: #F3F4F6; font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem; outline: none; width: 100%;
+    transition: border-color 0.28s, box-shadow 0.28s;
+  }
+  .modal-field input:focus { border-color: #DC2626; box-shadow: 0 0 0 3px rgba(220,38,38,0.18); }
+  .modal-field input::placeholder { color: #374151; }
+  .modal-forgot-link { font-size: 0.78rem; color: #DC2626; font-weight: 600; letter-spacing: 0.05em; cursor: pointer; transition: color 0.2s; text-decoration: underline; text-underline-offset: 3px; }
+  .modal-forgot-link:hover { color: #F87171; }
 
-    .modal-box h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2rem;
-      letter-spacing: 0.06em;
-      color: #F3F4F6;
-      margin-bottom: 0.3rem;
-    }
-    .modal-box .modal-sub {
-      font-size: 0.85rem;
-      color: #9CA3AF;
-      margin-bottom: 1.75rem;
-    }
+  .modal-submit {
+    padding: 0.85rem 1.5rem; background: #DC2626; color: #fff;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 0.14em;
+    border: none; border-radius: 10px; cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s; margin-top: 0.25rem;
+  }
+  .modal-submit:hover { background: #A31C1C; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(220,38,38,0.35); }
 
-    /* Modal form fields */
-    .modal-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
+  .modal-switch { text-align: center; font-size: 0.82rem; color: #9CA3AF; margin-top: 0.25rem; }
+  .modal-switch label { color: #DC2626; font-weight: 700; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 
-    .modal-field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-    .modal-field label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #6B7280;
-    }
-    .modal-field input,
-    .modal-field select {
-      background: #161616;
-      border: 1px solid #1f2937;
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
-      color: #F3F4F6;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.95rem;
-      outline: none;
-      width: 100%;
-      transition: border-color 0.28s, box-shadow 0.28s;
-    }
-    .modal-field input:focus,
-    .modal-field select:focus {
-      border-color: #DC2626;
-      box-shadow: 0 0 0 3px rgba(220,38,38,0.18);
-    }
-    .modal-field input::placeholder { color: #374151; }
+  .modal-box.signout-box { text-align: center; max-width: 380px; }
+  .signout-icon { font-size: 3rem; text-align: center; margin-bottom: 1rem; display: block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+  .signout-box h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .signout-box p { font-size: 0.9rem; color: #9CA3AF; margin-bottom: 1.75rem; line-height: 1.6; }
+  .signout-actions { display: flex; gap: 0.75rem; }
+  .signout-cancel { flex: 1; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid #1f2937; border-radius: 10px; color: #9CA3AF; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.1em; cursor: pointer; transition: background 0.2s, color 0.2s; }
+  .signout-cancel:hover { background: rgba(255,255,255,0.08); color: #F3F4F6; }
+  .signout-confirm { flex: 1; padding: 0.8rem; background: #DC2626; border: none; border-radius: 10px; color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.1em; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+  .signout-confirm:hover { background: #A31C1C; transform: translateY(-1px); }
 
-    /* Password field with eye icon area */
-    .pw-wrapper { position: relative; }
-    .pw-wrapper input { padding-right: 2.5rem; }
-    .pw-eye {
-      position: absolute;
-      right: 0.9rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.9rem;
-      color: #6B7280;
-      cursor: default;
-      user-select: none;
-    }
+  .account-nav-item.nav-danger { color: #6B7280; }
+  .account-nav-item.nav-danger:hover { color: #F87171; background: rgba(248,113,113,0.05); border-left-color: #F87171; }
 
-    /* Field row */
-    .modal-row {
-      display: flex;
-      gap: 0.75rem;
-    }
-    .modal-row .modal-field { flex: 1; }
+  .progress-bar { height: 4px; background: #1f2937; border-radius: 2px; margin-top: 0.5rem; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #A31C1C, #DC2626); }
 
-    /* Remember me / terms */
-    .modal-check-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.82rem;
-      color: #9CA3AF;
-    }
-    .modal-check-row input[type="checkbox"] {
-      accent-color: #DC2626;
-      width: 15px;
-      height: 15px;
-      cursor: pointer;
-    }
+  .profile-avatar-large { display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(220,38,38,0.07), rgba(10,10,10,0.9)); border: 1px solid rgba(220,38,38,0.2); border-radius: 16px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .pal-circle { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #A31C1C, #DC2626); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: #fff; letter-spacing: 0.1em; flex-shrink: 0; box-shadow: 0 0 24px rgba(220,38,38,0.35); border: 3px solid rgba(220,38,38,0.4); }
+  .pal-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.05em; color: #F3F4F6; }
+  .pal-info p { font-size: 0.82rem; color: #9CA3AF; margin-top: 0.2rem; }
+  .pal-actions { margin-left: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .pal-btn { padding: 0.4rem 0.9rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 6px; cursor: pointer; transition: all 0.2s; border: 1px solid rgba(220,38,38,0.35); color: #DC2626; background: transparent; }
+  .pal-btn:hover { background: #DC2626; color: #fff; }
+  .pal-btn.pal-btn-solid { background: #DC2626; color: #fff; border-color: #DC2626; }
+  .pal-btn.pal-btn-solid:hover { background: #A31C1C; }
 
-    /* Forgot link */
-    .modal-forgot-link {
-      font-size: 0.78rem;
-      color: #DC2626;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      transition: color 0.2s;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .modal-forgot-link:hover { color: #F87171; }
-
-    /* Submit button */
-    .modal-submit {
-      padding: 0.85rem 1.5rem;
-      background: #DC2626;
-      color: #fff;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.15rem;
-      letter-spacing: 0.14em;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      margin-top: 0.25rem;
-    }
-    .modal-submit:hover {
-      background: #A31C1C;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(220,38,38,0.35);
-    }
-    .modal-submit:active { transform: scale(0.97) translateY(0); }
-
-    /* Divider */
-    .modal-divider {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin: 0.5rem 0;
-    }
-    .modal-divider span {
-      flex: 1;
-      height: 1px;
-      background: #1f2937;
-    }
-    .modal-divider p {
-      font-size: 0.75rem;
-      color: #6B7280;
-      white-space: nowrap;
-    }
-
-    /* Switch links between modals */
-    .modal-switch {
-      text-align: center;
-      font-size: 0.82rem;
-      color: #9CA3AF;
-      margin-top: 0.25rem;
-    }
-    .modal-switch label {
-      color: #DC2626;
-      font-weight: 700;
-      cursor: pointer;
-      transition: color 0.2s;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .modal-switch label:hover { color: #F87171; }
-
-    /* Strength indicator */
-    .pw-strength {
-      display: flex;
-      gap: 4px;
-      margin-top: 0.4rem;
-    }
-    .pw-strength span {
-      flex: 1;
-      height: 3px;
-      border-radius: 2px;
-      background: #1f2937;
-    }
-    .pw-strength span:nth-child(1) { background: #DC2626; }
-    .pw-strength span:nth-child(2) { background: #DC2626; }
-    .pw-strength span:nth-child(3) { background: #1f2937; }
-
-    /* ── Sign Out confirm modal special ── */
-    .signout-icon {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      display: block;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-    .modal-box.signout-box { text-align: center; max-width: 380px; }
-    .signout-box h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
-    .signout-box p { font-size: 0.9rem; color: #9CA3AF; margin-bottom: 1.75rem; line-height: 1.6; }
-    .signout-actions {
-      display: flex;
-      gap: 0.75rem;
-    }
-    .signout-cancel {
-      flex: 1;
-      padding: 0.8rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid #1f2937;
-      border-radius: 10px;
-      color: #9CA3AF;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-    .signout-cancel:hover { background: rgba(255,255,255,0.08); color: #F3F4F6; }
-    .signout-confirm {
-      flex: 1;
-      padding: 0.8rem;
-      background: #DC2626;
-      border: none;
-      border-radius: 10px;
-      color: #fff;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .signout-confirm:hover { background: #A31C1C; transform: translateY(-1px); }
-
-    /* ── Auth action bar (shown when logged out) ── */
-    .auth-action-bar {
-      background: linear-gradient(90deg, rgba(220,38,38,0.08), rgba(220,38,38,0.04));
-      border: 1px solid rgba(220,38,38,0.2);
-      border-radius: 16px;
-      padding: 1.5rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-      animation: cardSlideUp 0.5s ease both;
-    }
-    .auth-bar-text h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.06em;
-      color: #F3F4F6;
-    }
-    .auth-bar-text p { font-size: 0.85rem; color: #9CA3AF; margin-top: 0.2rem; }
-    .auth-bar-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .auth-btn-login {
-      padding: 0.6rem 1.5rem;
-      background: #DC2626;
-      color: #fff;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      border: none;
-      display: inline-block;
-    }
-    .auth-btn-login:hover {
-      background: #A31C1C;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(220,38,38,0.3);
-    }
-    .auth-btn-signup {
-      padding: 0.6rem 1.5rem;
-      background: transparent;
-      color: #DC2626;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      border-radius: 8px;
-      border: 1px solid rgba(220,38,38,0.4);
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, transform 0.15s;
-      display: inline-block;
-    }
-    .auth-btn-signup:hover { background: rgba(220,38,38,0.1); transform: translateY(-2px); }
-
-    /* ── Enhanced nav sidebar ── */
-    .account-nav-item.nav-danger { color: #6B7280; }
-    .account-nav-item.nav-danger:hover {
-      color: #F87171;
-      background: rgba(248,113,113,0.05);
-      border-left-color: #F87171;
-    }
-
-    /* ── Settings tabs enhancement ── */
-    .settings-tab-row {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.75rem;
-      border-bottom: 1px solid #1f2937;
-      padding-bottom: 0;
-    }
-    .stab {
-      padding: 0.5rem 1rem;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #6B7280;
-      border-bottom: 2px solid transparent;
-      cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
-      margin-bottom: -1px;
-    }
-    .stab.active-stab { color: #DC2626; border-bottom-color: #DC2626; }
-    .stab:hover { color: #F3F4F6; }
-
-    /* ── Progress bar for stats ── */
-    .progress-bar {
-      height: 4px;
-      background: #1f2937;
-      border-radius: 2px;
-      margin-top: 0.5rem;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      border-radius: 2px;
-      background: linear-gradient(90deg, #A31C1C, #DC2626);
-    }
-
-    /* ── Activity feed ── */
-    .activity-feed {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .activity-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid #1f2937;
-      position: relative;
-    }
-    .activity-item:last-child { border-bottom: none; }
-    .activity-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #DC2626;
-      margin-top: 0.35rem;
-      flex-shrink: 0;
-      box-shadow: 0 0 8px rgba(220,38,38,0.5);
-    }
-    .activity-dot.green { background: #22C55E; box-shadow: 0 0 8px rgba(34,197,94,0.4); }
-    .activity-dot.amber { background: #F59E0B; box-shadow: 0 0 8px rgba(245,158,11,0.4); }
-    .activity-text { flex: 1; }
-    .activity-text p { font-size: 0.85rem; color: #9CA3AF; line-height: 1.5; }
-    .activity-text strong { color: #F3F4F6; font-weight: 600; }
-    .activity-time { font-size: 0.72rem; color: #4B5563; white-space: nowrap; margin-top: 0.2rem; }
-
-    /* ── Enhanced profile avatar ── */
-    .profile-avatar-large {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 1.5rem;
-      background: linear-gradient(135deg, rgba(220,38,38,0.07), rgba(10,10,10,0.9));
-      border: 1px solid rgba(220,38,38,0.2);
-      border-radius: 16px;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .pal-circle {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #A31C1C, #DC2626);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.8rem;
-      color: #fff;
-      letter-spacing: 0.1em;
-      flex-shrink: 0;
-      box-shadow: 0 0 24px rgba(220,38,38,0.35);
-      border: 3px solid rgba(220,38,38,0.4);
-    }
-    .pal-info h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.05em;
-      color: #F3F4F6;
-    }
-    .pal-info p { font-size: 0.82rem; color: #9CA3AF; margin-top: 0.2rem; }
-    .pal-actions { margin-left: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .pal-btn {
-      padding: 0.4rem 0.9rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: 1px solid rgba(220,38,38,0.35);
-      color: #DC2626;
-      background: transparent;
-    }
-    .pal-btn:hover { background: #DC2626; color: #fff; }
-    .pal-btn.pal-btn-solid { background: #DC2626; color: #fff; border-color: #DC2626; }
-    .pal-btn.pal-btn-solid:hover { background: #A31C1C; }
-
-    /* ── Notification bell ── */
-    .notif-badge-wrap {
-      position: relative;
-      display: inline-block;
-    }
-    .notif-badge {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #DC2626;
-      border: 2px solid #111;
-    }
-
-    /* ── Mobile modal ── */
-    @media (max-width: 480px) {
-      .modal-box { padding: 2rem 1.25rem 1.5rem; margin: 0 1rem; }
-      .modal-row { flex-direction: column; }
-    }
-  </style>
+  .settings-form input, .settings-form select, .settings-form input[type="date"] {
+    background: #161616 !important; border: 1px solid #1f2937 !important; color: #F3F4F6 !important;
+    border-radius: 8px; padding: 0.7rem 1rem; font-family: 'Barlow', sans-serif; font-size: 0.9rem;
+    outline: none; width: 100%; color-scheme: dark;
+  }
+  .settings-form input:focus, .settings-form select:focus { border-color: #DC2626 !important; box-shadow: 0 0 0 3px rgba(220,38,38,0.18); }
+  .settings-form input::placeholder { color: #374151; }
+  @media (max-width: 480px) { .modal-box { padding: 2rem 1.25rem 1.5rem; } }
+</style>
 </head>
 <body class="account-page">
 
-  <!-- ══════════════════════════════════════
-       CSS-ONLY MODAL TOGGLE CHECKBOXES
-  ══════════════════════════════════════ -->
   <input type="checkbox" id="modal-login"   class="modal-toggle" />
   <input type="checkbox" id="modal-signup"  class="modal-toggle" />
   <input type="checkbox" id="modal-forgot"  class="modal-toggle" />
   <input type="checkbox" id="modal-signout" class="modal-toggle" />
 
-  <!-- ══════════════════════════════════════
-       MODAL: LOGIN
-  ══════════════════════════════════════ -->
-  <div class="modal-overlay modal-overlay-login">
-    <label class="modal-backdrop-close" for="modal-login"></label>
-    <div class="modal-box">
-      <label class="modal-close" for="modal-login">✕</label>
-
-      <div class="modal-logo">
-        <span>⚡</span>FITNESS HUB
-      </div>
-
-      <h2>Welcome Back</h2>
-      <p class="modal-sub">Sign in to access your account and training dashboard.</p>
-
-      <form class="modal-form" action="#" method="post">
-        <div class="modal-field">
-          <label for="l-email">Email Address</label>
-          <input type="email" id="l-email" name="email" placeholder="giorgi.h@example.com" />
-        </div>
-
-        <div class="modal-field">
-          <label for="l-password">Password</label>
-          <div class="pw-wrapper">
-            <input type="password" id="l-password" name="password" placeholder="Enter your password" />
-            <span class="pw-eye">👁</span>
-          </div>
-        </div>
-
-        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
-          <label class="modal-check-row">
-            <input type="checkbox" name="remember" /> Remember me
-          </label>
-          <!-- Switch to forgot modal -->
-          <label class="modal-forgot-link" for="modal-login">
-            <!-- We use a workaround: uncheck login, check forgot via labels -->
-          </label>
-          <label class="modal-forgot-link" for="modal-forgot" onclick="">Forgot password?</label>
-        </div>
-
-        <button type="submit" class="modal-submit">Sign In →</button>
-
-        <div class="modal-divider">
-          <span></span><p>OR CONTINUE WITH</p><span></span>
-        </div>
-
-        <div style="display:flex; gap:0.6rem;">
-          <button type="button" style="flex:1; padding:0.65rem; background:#161616; border:1px solid #1f2937; border-radius:10px; color:#9CA3AF; font-size:0.85rem; cursor:pointer; transition:border-color 0.2s; font-family:'Barlow',sans-serif;">
-            🌐 Google
-          </button>
-          <button type="button" style="flex:1; padding:0.65rem; background:#161616; border:1px solid #1f2937; border-radius:10px; color:#9CA3AF; font-size:0.85rem; cursor:pointer; transition:border-color 0.2s; font-family:'Barlow',sans-serif;">
-            📘 Facebook
-          </button>
-        </div>
-
-        <p class="modal-switch">
-          Don't have an account? <label for="modal-signup">Create one free</label>
-        </p>
-      </form>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════
-       MODAL: SIGN UP
-  ══════════════════════════════════════ -->
-  <div class="modal-overlay modal-overlay-signup">
-    <label class="modal-backdrop-close" for="modal-signup"></label>
-    <div class="modal-box">
-      <label class="modal-close" for="modal-signup">✕</label>
-
-      <div class="modal-logo">
-        <span>⚡</span>FITNESS HUB
-      </div>
-
-      <h2>Create Account</h2>
-      <p class="modal-sub">Join FITNESS HUB and start your transformation today.</p>
-
-      <form class="modal-form" action="#" method="post">
-        <div class="modal-row">
-          <div class="modal-field">
-            <label for="s-fname">First Name</label>
-            <input type="text" id="s-fname" name="fname" placeholder="Giorgi" />
-          </div>
-          <div class="modal-field">
-            <label for="s-lname">Last Name</label>
-            <input type="text" id="s-lname" name="lname" placeholder="Beridze" />
-          </div>
-        </div>
-
-        <div class="modal-field">
-          <label for="s-email">Email Address</label>
-          <input type="email" id="s-email" name="email" placeholder="you@example.com" />
-        </div>
-
-        <div class="modal-field">
-          <label for="s-phone">Phone Number</label>
-          <input type="text" id="s-phone" name="phone" placeholder="+995 555 000 000" />
-        </div>
-
-        <div class="modal-field">
-          <label for="s-city">City</label>
-          <select id="s-city" name="city">
-            <option value="" disabled selected>— Select your city —</option>
-            <option>Tbilisi</option>
-            <option>Batumi</option>
-            <option>Kutaisi</option>
-            <option>Rustavi</option>
-          </select>
-        </div>
-
-        <div class="modal-field">
-          <label for="s-plan">Membership Plan</label>
-          <select id="s-plan" name="plan">
-            <option value="" disabled selected>— Choose a plan —</option>
-            <option>Starter — ₾80/mo</option>
-            <option>Active — ₾210/3 mo</option>
-            <option>Pro — ₾380/6 mo</option>
-            <option>Elite — ₾650/yr</option>
-          </select>
-        </div>
-
-        <div class="modal-field">
-          <label for="s-password">Password</label>
-          <div class="pw-wrapper">
-            <input type="password" id="s-password" name="password" placeholder="Min. 8 characters" />
-            <span class="pw-eye">👁</span>
-          </div>
-          <div class="pw-strength">
-            <span></span><span></span><span></span><span></span>
-          </div>
-        </div>
-
-        <div class="modal-field">
-          <label for="s-confirm">Confirm Password</label>
-          <div class="pw-wrapper">
-            <input type="password" id="s-confirm" name="confirm" placeholder="Repeat your password" />
-            <span class="pw-eye">👁</span>
-          </div>
-        </div>
-
-        <label class="modal-check-row">
-          <input type="checkbox" name="terms" required />
-          I agree to the <span style="color:#DC2626; margin-left:0.25rem;">Terms &amp; Privacy Policy</span>
-        </label>
-
-        <button type="submit" class="modal-submit">Create My Account →</button>
-
-        <p class="modal-switch">
-          Already have an account? <label for="modal-login">Sign in</label>
-        </p>
-      </form>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════
-       MODAL: FORGOT PASSWORD
-  ══════════════════════════════════════ -->
+  
+  <!--  FORGOT PASSWORD -->
   <div class="modal-overlay modal-overlay-forgot">
     <label class="modal-backdrop-close" for="modal-forgot"></label>
     <div class="modal-box">
       <label class="modal-close" for="modal-forgot">✕</label>
-
-      <div class="modal-logo">
-        <span>⚡</span>FITNESS HUB
-      </div>
-
+      <div class="modal-logo"><span>⚡</span>FITNESS HUB</div>
       <h2>Reset Password</h2>
       <p class="modal-sub">Enter your email and we'll send you a reset link within 5 minutes.</p>
-
       <form class="modal-form" action="#" method="post">
-        <div class="modal-field">
-          <label for="f-email">Email Address</label>
-          <input type="email" id="f-email" name="email" placeholder="giorgi.h@example.com" />
-        </div>
-
+        <div class="modal-field"><label for="f-email">Email Address</label><input type="email" id="f-email" name="email" placeholder="giorgi.h@example.com" /></div>
         <div style="background:rgba(220,38,38,0.06); border:1px solid rgba(220,38,38,0.2); border-radius:10px; padding:0.85rem 1rem;">
-          <p style="font-size:0.82rem; color:#9CA3AF; line-height:1.6;">
-            🔒 We'll send a secure link to this address. The link expires in <strong style="color:#F3F4F6;">30 minutes.</strong>
-          </p>
+          <p style="font-size:0.82rem; color:#9CA3AF; line-height:1.6;">🔒 We'll send a secure link. It expires in <strong style="color:#F3F4F6;">30 minutes.</strong></p>
         </div>
-
         <button type="submit" class="modal-submit">Send Reset Link →</button>
-
-        <p class="modal-switch">
-          Remember your password? <label for="modal-login">Back to Login</label>
-        </p>
+        <p class="modal-switch">Remember your password? <label for="modal-login">Back to Login</label></p>
       </form>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       MODAL: SIGN OUT CONFIRM
-  ══════════════════════════════════════ -->
+  <!-- SIGN OUT -->
   <div class="modal-overlay modal-overlay-signout">
     <label class="modal-backdrop-close" for="modal-signout"></label>
     <div class="modal-box signout-box">
       <label class="modal-close" for="modal-signout">✕</label>
       <span class="signout-icon">🚪</span>
       <h2>Sign Out?</h2>
-      <p>You'll be logged out of FITNESS HUB. Any unsaved changes to your settings will be lost.</p>
+      <p>You'll be logged out of FITNESS HUB. Any unsaved changes will be lost.</p>
       <div class="signout-actions">
         <label class="signout-cancel" for="modal-signout">Cancel</label>
-        <a href="index.html" class="signout-confirm" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">
-          Yes, Sign Out
-        </a>
+        <a href="index.html" class="signout-confirm" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">Yes, Sign Out</a>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       HEADER
-  ══════════════════════════════════════ -->
+  <!-- HEADER -->
   <header>
     <nav class="nav-container">
-      <a href="index.html" class="nav-logo">
-        <span class="logo-icon">⚡</span>FITNESS HUB
-      </a>
+      <a href="index.html" class="nav-logo"><span class="logo-icon">⚡</span>FITNESS HUB</a>
       <ul class="nav-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="gyms.html" class="nav-link">Places</a></li>
@@ -773,9 +196,7 @@
         <li><a href="account.html" class="nav-link active">Account</a></li>
         <li><a href="gym-place.html" class="nav-link nav-cta">Find a Gym</a></li>
       </ul>
-      <label class="hamburger" for="mobile-toggle-account">
-        <span></span><span></span><span></span>
-      </label>
+      <label class="hamburger" for="mobile-toggle-account"><span></span><span></span><span></span></label>
       <input type="checkbox" id="mobile-toggle-account" class="mobile-toggle-input" />
       <ul class="mobile-menu">
         <li><a href="index.html">Home</a></li>
@@ -787,8 +208,6 @@
   </header>
 
   <main>
-
-    <!-- ACCOUNT HERO BANNER -->
     <section class="account-hero">
       <div class="account-hero-inner">
         <div class="account-avatar">
@@ -800,79 +219,35 @@
           <h1>Giorgi <span class="accent">Haritonashvili</span></h1>
           <p class="account-since">Member since January 2025 &nbsp;·&nbsp; Pro Plan &nbsp;·&nbsp; Tbilisi, Georgia</p>
         </div>
-        <!-- Quick auth actions in hero -->
-        <div style="margin-left:auto; display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center;">
-          <label for="modal-login" class="auth-btn-login" style="cursor:pointer;">Sign In</label>
-          <label for="modal-signup" class="auth-btn-signup" style="cursor:pointer;">Register</label>
-        </div>
+
       </div>
     </section>
 
-    <!-- MAIN ACCOUNT LAYOUT -->
     <section class="account-layout section-container">
-
-      <!-- LEFT: SIDEBAR NAV -->
+      <!-- SIDEBAR -->
       <aside class="account-sidebar">
         <nav class="account-nav">
-          <a href="#profile" class="account-nav-item active-tab">
-            <span class="anav-icon">👤</span> Profile
-          </a>
-          <a href="#membership" class="account-nav-item">
-            <span class="anav-icon">💳</span> Membership
-          </a>
-          <a href="#bookings" class="account-nav-item">
-            <span class="anav-icon">📅</span> Bookings
-          </a>
-          <a href="#trainers" class="account-nav-item">
-            <span class="anav-icon">🏋️</span> Trainers
-          </a>
-          <a href="#activity" class="account-nav-item">
-            <span class="anav-icon">📊</span> Activity
-          </a>
-          <a href="#settings" class="account-nav-item">
-            <span class="anav-icon">⚙️</span> Settings
-          </a>
-          <!-- Sign out triggers modal -->
-          <label for="modal-signout" class="account-nav-item nav-danger" style="cursor:pointer;">
-            <span class="anav-icon">🚪</span> Sign Out
-          </label>
+          <a href="#profile"    class="account-nav-item active-tab"><span class="anav-icon">👤</span> Profile</a>
+          <a href="#membership" class="account-nav-item"><span class="anav-icon">💳</span> Membership</a>
+          <a href="#bookings"   class="account-nav-item"><span class="anav-icon">📅</span> Bookings</a>
+          <a href="#trainers"   class="account-nav-item"><span class="anav-icon">🏋️</span> Trainers</a>
+          <a href="#settings"   class="account-nav-item"><span class="anav-icon">⚙️</span> Settings</a>
+          <label for="modal-signout" class="account-nav-item nav-danger" style="cursor:pointer;"><span class="anav-icon">🚪</span> Sign Out</label>
         </nav>
 
-        <!-- Quick auth card in sidebar -->
-        <div style="margin-top:1rem; background:#111; border:1px solid rgba(220,38,38,0.2); border-radius:14px; padding:1.25rem; box-shadow:0 8px 32px rgba(0,0,0,0.6);">
-          <p style="font-size:0.7rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#6B7280; margin-bottom:0.75rem;">Quick Access</p>
-          <label for="modal-login" style="display:block; width:100%; padding:0.55rem; background:#DC2626; color:#fff; text-align:center; border-radius:8px; font-family:'Bebas Neue',sans-serif; font-size:0.95rem; letter-spacing:0.1em; cursor:pointer; transition:background 0.2s; margin-bottom:0.5rem;">
-            Sign In
-          </label>
-          <label for="modal-signup" style="display:block; width:100%; padding:0.55rem; background:transparent; color:#DC2626; text-align:center; border-radius:8px; border:1px solid rgba(220,38,38,0.35); font-family:'Bebas Neue',sans-serif; font-size:0.95rem; letter-spacing:0.1em; cursor:pointer; transition:all 0.2s;">
-            Create Account
-          </label>
-        </div>
       </aside>
 
-      <!-- RIGHT: CONTENT PANELS -->
+      <!-- CONTENT -->
       <div class="account-content">
 
-        <!-- AUTH ACTION BAR -->
-        <div class="auth-action-bar">
-          <div class="auth-bar-text">
-            <h3>🔐 Access Your Full Dashboard</h3>
-            <p>Sign in to view bookings, manage your membership, and track your progress.</p>
-          </div>
-          <div class="auth-bar-actions">
-            <label for="modal-login" class="auth-btn-login" style="cursor:pointer;">Sign In</label>
-            <label for="modal-signup" class="auth-btn-signup" style="cursor:pointer;">Register Free</label>
-          </div>
-        </div>
 
-        <!-- ── PROFILE ── -->
+
+        <!-- PROFILISTVIS ( BOLOMDE DASRULEBULI ) -->
         <div id="profile" class="account-panel">
           <div class="panel-title-row">
             <h2>Profile <span class="accent">Details</span></h2>
             <a href="#settings" class="panel-edit-btn">✏️ Edit Profile</a>
           </div>
-
-          <!-- Enhanced avatar row -->
           <div class="profile-avatar-large">
             <div class="pal-circle">GH</div>
             <div class="pal-info">
@@ -889,100 +264,29 @@
               <button class="pal-btn">Share</button>
             </div>
           </div>
-
-          <div class="profile-grid">
-            <div class="profile-field">
-              <span class="field-label">First Name</span>
-              <span class="field-value">Giorgi</span>
-            </div>
-            <div class="profile-field">
-              <span class="field-label">Last Name</span>
-              <span class="field-value">Haritonashvili</span>
-            </div>
-            <div class="profile-field">
-              <span class="field-label">Email</span>
-              <span class="field-value">giorgi.h@example.com</span>
-            </div>
-            <div class="profile-field">
-              <span class="field-label">Phone</span>
-              <span class="field-value">+995 555 123 456</span>
-            </div>
-            <div class="profile-field">
-              <span class="field-label">City</span>
-              <span class="field-value">Tbilisi, Georgia</span>
-            </div>
-            <div class="profile-field">
-              <span class="field-label">Date of Birth</span>
-              <span class="field-value">14 March 1998</span>
-            </div>
-            <div class="profile-field profile-field-full">
-              <span class="field-label">Training Goals</span>
-              <div class="goal-tags">
-                <span class="goal-tag">💪 Build Strength</span>
-                <span class="goal-tag">🏃 Endurance</span>
-                <span class="goal-tag">⚖️ Weight Management</span>
-              </div>
+          <div style="margin-bottom:1.5rem;">
+            <span class="field-label" style="font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#6B7280; display:block; margin-bottom:0.6rem;">Training Goals</span>
+            <div class="goal-tags">
+              <span class="goal-tag">💪 Build Strength</span>
+              <span class="goal-tag">🏃 Endurance</span>
+              <span class="goal-tag">⚖️ Weight Management</span>
             </div>
           </div>
-
-          <!-- Progress section -->
-          <h3 class="sub-heading">Progress Overview</h3>
-          <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2rem;">
-            <div>
-              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.35rem;">
-                <span style="color:#9CA3AF;">Monthly Goal</span>
-                <span style="color:#F3F4F6; font-weight:700;">18 / 24 sessions</span>
-              </div>
-              <div class="progress-bar"><div class="progress-fill" style="width:75%;"></div></div>
-            </div>
-            <div>
-              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.35rem;">
-                <span style="color:#9CA3AF;">Attendance Rate</span>
-                <span style="color:#F3F4F6; font-weight:700;">87%</span>
-              </div>
-              <div class="progress-bar"><div class="progress-fill" style="width:87%; background:linear-gradient(90deg,#065F46,#22C55E);"></div></div>
-            </div>
-            <div>
-              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.35rem;">
-                <span style="color:#9CA3AF;">Trainer Rating Given</span>
-                <span style="color:#F3F4F6; font-weight:700;">4.8 / 5.0</span>
-              </div>
-              <div class="progress-bar"><div class="progress-fill" style="width:96%; background:linear-gradient(90deg,#92400E,#F59E0B);"></div></div>
-            </div>
-          </div>
-
-          <!-- Stats row -->
           <div class="stats-row">
-            <div class="stat-box">
-              <span class="stat-num">24</span>
-              <span class="stat-label">Sessions Done</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num">3</span>
-              <span class="stat-label">Active Trainers</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num">4</span>
-              <span class="stat-label">Months Active</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num accent">Pro</span>
-              <span class="stat-label">Current Plan</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num" style="color:#22C55E;">87%</span>
-              <span class="stat-label">Attendance</span>
-            </div>
+            <div class="stat-box"><span class="stat-num">24</span><span class="stat-label">Sessions Done</span></div>
+            <div class="stat-box"><span class="stat-num">3</span><span class="stat-label">Active Trainers</span></div>
+            <div class="stat-box"><span class="stat-num">4</span><span class="stat-label">Months Active</span></div>
+            <div class="stat-box"><span class="stat-num accent">Pro</span><span class="stat-label">Current Plan</span></div>
+            <div class="stat-box"><span class="stat-num" style="color:#22C55E;">87%</span><span class="stat-label">Attendance</span></div>
           </div>
         </div>
 
-        <!-- ── MEMBERSHIP ── -->
+        <!-- MEMBERSHIP -->
         <div id="membership" class="account-panel">
           <div class="panel-title-row">
             <h2>My <span class="accent">Membership</span></h2>
             <a href="index.html#contact" class="panel-edit-btn panel-upgrade-btn">⬆ Upgrade Plan</a>
           </div>
-
           <div class="membership-card">
             <div class="mc-left">
               <span class="mc-plan">Pro Plan</span>
@@ -991,406 +295,130 @@
                 <span>Started: <strong>1 Jan 2025</strong></span>
                 <span>Renews: <strong>1 Jul 2025</strong></span>
               </div>
-              <!-- Days remaining -->
               <div style="margin-top:0.9rem;">
-                <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#9CA3AF; margin-bottom:0.4rem;">
-                  <span>Days remaining</span><span style="color:#F3F4F6; font-weight:700;">61 days</span>
-                </div>
-                <div class="progress-bar" style="height:6px;">
-                  <div class="progress-fill" style="width:34%; background:linear-gradient(90deg,#DC2626,#F59E0B);"></div>
-                </div>
+                <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#9CA3AF; margin-bottom:0.4rem;"><span>Days remaining</span><span style="color:#F3F4F6; font-weight:700;">61 days</span></div>
+                <div class="progress-bar" style="height:6px;"><div class="progress-fill" style="width:34%; background:linear-gradient(90deg,#DC2626,#F59E0B);"></div></div>
               </div>
             </div>
             <div class="mc-right">
               <span class="mc-price">₾380</span>
               <span class="mc-period">/ 6 months</span>
               <span class="mc-status active-status">● Active</span>
-              <button style="margin-top:0.5rem; padding:0.4rem 0.8rem; background:rgba(220,38,38,0.1); border:1px solid rgba(220,38,38,0.3); border-radius:8px; color:#DC2626; font-size:0.73rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:all 0.2s;">
-                Auto-renew ON
-              </button>
+              <button style="margin-top:0.5rem; padding:0.4rem 0.8rem; background:rgba(220,38,38,0.1); border:1px solid rgba(220,38,38,0.3); border-radius:8px; color:#DC2626; font-size:0.73rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer;">Auto-renew ON</button>
             </div>
           </div>
-
           <h3 class="sub-heading">Available Plans</h3>
           <div class="plans-compare">
-            <div class="plan-row">
-              <span class="plan-name">Starter</span>
-              <span class="plan-desc">Gym access only</span>
-              <span class="plan-duration">1 Month</span>
-              <span class="plan-price">₾80</span>
-              <a href="index.html#contact" class="plan-select-btn">Select</a>
-            </div>
-            <div class="plan-row">
-              <span class="plan-name">Active</span>
-              <span class="plan-desc">Gym + 2 classes/week</span>
-              <span class="plan-duration">3 Months</span>
-              <span class="plan-price">₾210</span>
-              <a href="index.html#contact" class="plan-select-btn">Select</a>
-            </div>
-            <div class="plan-row plan-row-current">
-              <span class="plan-name">Pro ✓</span>
-              <span class="plan-desc">Gym + unlimited classes</span>
-              <span class="plan-duration">6 Months</span>
-              <span class="plan-price">₾380</span>
-              <span class="plan-current-badge">Current</span>
-            </div>
-            <div class="plan-row">
-              <span class="plan-name">Elite</span>
-              <span class="plan-desc">All access + trainer</span>
-              <span class="plan-duration">12 Months</span>
-              <span class="plan-price">₾650</span>
-              <a href="index.html#contact" class="plan-select-btn">Select</a>
-            </div>
-          </div>
-
-          <!-- Benefits list -->
-          <h3 class="sub-heading" style="margin-top:1.75rem;">Your Pro Benefits</h3>
-          <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:0.75rem;">
-            <div style="background:#161616; border:1px solid #1f2937; border-radius:10px; padding:0.85rem; font-size:0.85rem; color:#9CA3AF;">✅ Unlimited class bookings</div>
-            <div style="background:#161616; border:1px solid #1f2937; border-radius:10px; padding:0.85rem; font-size:0.85rem; color:#9CA3AF;">✅ Access to all 5 gyms</div>
-            <div style="background:#161616; border:1px solid #1f2937; border-radius:10px; padding:0.85rem; font-size:0.85rem; color:#9CA3AF;">✅ 1 personal trainer session/mo</div>
-            <div style="background:#161616; border:1px solid #1f2937; border-radius:10px; padding:0.85rem; font-size:0.85rem; color:#9CA3AF;">✅ Nutrition consultation</div>
-            <div style="background:#161616; border:1px solid #1f2937; border-radius:10px; padding:0.85rem; font-size:0.85rem; color:#9CA3AF;">✅ Sauna &amp; recovery zone</div>
-            <div style="background:#161616; border:1px solid rgba(220,38,38,0.3); border-radius:10px; padding:0.85rem; font-size:0.85rem; color:#6B7280;">🔒 Trainer on-call (Elite only)</div>
+            <div class="plan-row"><span class="plan-name">Starter</span><span class="plan-desc">Gym access only</span><span class="plan-duration">1 Month</span><span class="plan-price">₾80</span><a href="index.html#contact" class="plan-select-btn">Select</a></div>
+            <div class="plan-row"><span class="plan-name">Active</span><span class="plan-desc">Gym + 2 classes/week</span><span class="plan-duration">3 Months</span><span class="plan-price">₾210</span><a href="index.html#contact" class="plan-select-btn">Select</a></div>
+            <div class="plan-row plan-row-current"><span class="plan-name">Pro ✓</span><span class="plan-desc">Gym + unlimited classes</span><span class="plan-duration">6 Months</span><span class="plan-price">₾380</span><span class="plan-current-badge">Current</span></div>
+            <div class="plan-row"><span class="plan-name">Elite</span><span class="plan-desc">All access + trainer</span><span class="plan-duration">12 Months</span><span class="plan-price">₾650</span><a href="index.html#contact" class="plan-select-btn">Select</a></div>
           </div>
         </div>
 
-        <!-- ── BOOKINGS ── -->
+        <!-- JAVSHNEBI ( BOLOMDE DASRULEBULI ) -->
         <div id="bookings" class="account-panel">
           <div class="panel-title-row">
-            <h2>My <span class="accent">Bookings</span></h2>
+            <h2>My <span class="accent">Schedule</span></h2>
             <a href="index.html#contact" class="panel-edit-btn">+ Book Session</a>
           </div>
-
-          <h3 class="sub-heading">Upcoming Sessions</h3>
-          <div class="bookings-list">
-            <div class="booking-item booking-upcoming">
-              <div class="booking-date-box">
-                <span class="bdate-day">07</span>
-                <span class="bdate-month">May</span>
-              </div>
-              <div class="booking-details">
-                <h4>Strength &amp; Conditioning</h4>
-                <p>with Alex Beridze &nbsp;·&nbsp; 09:00 – 10:00</p>
-                <p class="booking-gym">📍 Gladiator Fitness, Tbilisi</p>
-              </div>
-              <span class="booking-status-badge upcoming-badge">Upcoming</span>
-            </div>
-            <div class="booking-item booking-upcoming">
-              <div class="booking-date-box">
-                <span class="bdate-day">09</span>
-                <span class="bdate-month">May</span>
-              </div>
-              <div class="booking-details">
-                <h4>CrossFit HIIT</h4>
-                <p>with Giorgi Tabatadze &nbsp;·&nbsp; 15:00 – 16:00</p>
-                <p class="booking-gym">📍 Gladiator Fitness, Tbilisi</p>
-              </div>
-              <span class="booking-status-badge upcoming-badge">Upcoming</span>
-            </div>
-            <div class="booking-item booking-upcoming">
-              <div class="booking-date-box">
-                <span class="bdate-day">10</span>
-                <span class="bdate-month">May</span>
-              </div>
-              <div class="booking-details">
-                <h4>Cardio &amp; Nutrition Consult</h4>
-                <p>with Mariam Dvalishvili &nbsp;·&nbsp; 15:00 – 16:00</p>
-                <p class="booking-gym">📍 Rule Fitness, Batumi</p>
-              </div>
-              <span class="booking-status-badge upcoming-badge">Upcoming</span>
-            </div>
-          </div>
-
-          <h3 class="sub-heading" style="margin-top:2rem;">Past Sessions</h3>
-          <div class="bookings-list">
-            <div class="booking-item booking-past">
-              <div class="booking-date-box past-box">
-                <span class="bdate-day">28</span>
-                <span class="bdate-month">Apr</span>
-              </div>
-              <div class="booking-details">
-                <h4>Strength Training</h4>
-                <p>with Alex Beridze &nbsp;·&nbsp; 09:00 – 10:00</p>
-                <p class="booking-gym">📍 Gladiator Fitness, Tbilisi</p>
-              </div>
-              <span class="booking-status-badge past-badge">Completed</span>
-            </div>
-            <div class="booking-item booking-past">
-              <div class="booking-date-box past-box">
-                <span class="bdate-day">24</span>
-                <span class="bdate-month">Apr</span>
-              </div>
-              <div class="booking-details">
-                <h4>Yoga &amp; Flexibility</h4>
-                <p>with Nino Kvaratskhelia &nbsp;·&nbsp; 11:00 – 12:00</p>
-                <p class="booking-gym">📍 Reformer Fitness, Tbilisi</p>
-              </div>
-              <span class="booking-status-badge past-badge">Completed</span>
-            </div>
-            <div class="booking-item booking-past">
-              <div class="booking-date-box past-box">
-                <span class="bdate-day">19</span>
-                <span class="bdate-month">Apr</span>
-              </div>
-              <div class="booking-details">
-                <h4>CrossFit HIIT</h4>
-                <p>with Giorgi Tabatadze &nbsp;·&nbsp; 14:00 – 15:00</p>
-                <p class="booking-gym">📍 Gladiator Fitness, Tbilisi</p>
-              </div>
-              <span class="booking-status-badge past-badge">Completed</span>
-            </div>
-          </div>
+          <p style="font-size:0.85rem; color:#9CA3AF; margin-bottom:1.25rem;">Weekly sessions with <strong style="color:#F3F4F6;">Alex Beridze</strong> — Strength &amp; Conditioning</p>
+          <style>
+            .session-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+            .session-table th { background:#161616; color:#6B7280; font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:0.65rem 1rem; text-align:left; border-bottom:1px solid #1f2937; }
+            .session-table td { padding:0.75rem 1rem; border-bottom:1px solid #1f2937; color:#9CA3AF; vertical-align:middle; }
+            .session-table tr:last-child td { border-bottom:none; }
+            .session-table tr:hover td { background:rgba(220,38,38,0.04); }
+            .session-table td:first-child { color:#F3F4F6; font-weight:600; }
+            .s-badge { display:inline-block; padding:0.2rem 0.6rem; border-radius:5px; font-size:0.72rem; font-weight:700; letter-spacing:0.06em; }
+            .s-upcoming { background:rgba(220,38,38,0.12); color:#DC2626; }
+            .s-done { background:rgba(34,197,94,0.1); color:#22C55E; }
+            .s-rest { background:rgba(255,255,255,0.05); color:#4B5563; }
+          </style>
+          <table class="session-table">
+            <thead>
+              <tr><th>Day</th><th>Session Type</th><th>Time</th><th>Location</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Monday</td><td>Strength &amp; Conditioning</td><td>09:00 – 10:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-done">Done</span></td></tr>
+              <tr><td>Wednesday</td><td>Upper Body Power</td><td>09:00 – 10:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-done">Done</span></td></tr>
+              <tr><td>Friday</td><td>Full Body Circuit</td><td>09:00 – 10:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-upcoming">Upcoming</span></td></tr>
+              <tr><td>Saturday</td><td>Core &amp; Mobility</td><td>10:00 – 11:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-upcoming">Upcoming</span></td></tr>
+              <tr><td>Tuesday / Thursday</td><td>—</td><td>—</td><td>—</td><td><span class="s-badge s-rest">Rest Day</span></td></tr>
+            </tbody>
+          </table>
         </div>
 
-        <!-- ── MY TRAINERS ── -->
+        <!-- TRAINER -->
         <div id="trainers" class="account-panel">
           <div class="panel-title-row">
-            <h2>My <span class="accent">Trainers</span></h2>
-            <a href="index.html#instructors-section" class="panel-edit-btn">Browse All</a>
+            <h2>My <span class="accent">Trainer</span></h2>
+            <a href="index.html#instructors-section" class="panel-edit-btn">Change Trainer</a>
           </div>
+          <div class="my-trainer-card" style="display:flex; align-items:center; gap:1.5rem; background:linear-gradient(135deg,rgba(220,38,38,0.07),rgba(10,10,10,0.9)); border:1px solid rgba(220,38,38,0.2); border-radius:16px; padding:1.5rem; flex-wrap:wrap;">
+            <div class="mt-avatar" style="background-image:url('https://placehold.co/80x80/111/DC2626?text=AB'); width:80px; height:80px; border-radius:50%; background-color:#111; background-size:cover; flex-shrink:0; border:3px solid rgba(220,38,38,0.4);"></div>
+            <div class="mt-info" style="flex:1;">
+              <h4 style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.05em; color:#F3F4F6; margin-bottom:0.2rem;">Alex Beridze</h4>
+              <p class="mt-spec" style="font-size:0.85rem; color:#9CA3AF;">Strength &amp; Conditioning</p>
+              <p class="mt-sessions" style="font-size:0.8rem; color:#6B7280; margin-top:0.3rem;">12 sessions completed &nbsp;·&nbsp; Member since Jan 2025</p>
+              <div class="mt-stars" style="color:#F59E0B; margin-top:0.4rem; font-size:1rem;">★★★★★</div>
+            </div>
 
-          <div class="my-trainers-grid">
-            <div class="my-trainer-card">
-              <div class="mt-avatar" style="background-image:url('https://placehold.co/80x80/111/DC2626?text=AB')"></div>
-              <div class="mt-info">
-                <h4>Alex Beridze</h4>
-                <p class="mt-spec">Strength &amp; Conditioning</p>
-                <p class="mt-sessions">12 sessions completed</p>
-                <div class="mt-stars">★★★★★</div>
-              </div>
-              <a href="index.html#contact" class="mt-book-btn">Book Again</a>
-            </div>
-            <div class="my-trainer-card">
-              <div class="mt-avatar" style="background-image:url('https://placehold.co/80x80/111/DC2626?text=NK')"></div>
-              <div class="mt-info">
-                <h4>Nino Kvaratskhelia</h4>
-                <p class="mt-spec">Yoga &amp; Flexibility</p>
-                <p class="mt-sessions">7 sessions completed</p>
-                <div class="mt-stars">★★★★★</div>
-              </div>
-              <a href="index.html#contact" class="mt-book-btn">Book Again</a>
-            </div>
-            <div class="my-trainer-card">
-              <div class="mt-avatar" style="background-image:url('https://placehold.co/80x80/111/DC2626?text=GT')"></div>
-              <div class="mt-info">
-                <h4>Giorgi Tabatadze</h4>
-                <p class="mt-spec">CrossFit &amp; HIIT</p>
-                <p class="mt-sessions">5 sessions completed</p>
-                <div class="mt-stars">★★★★☆</div>
-              </div>
-              <a href="index.html#contact" class="mt-book-btn">Book Again</a>
-            </div>
           </div>
         </div>
 
-        <!-- ── ACTIVITY FEED (NEW) ── -->
-        <div id="activity" class="account-panel">
-          <div class="panel-title-row">
-            <h2>Recent <span class="accent">Activity</span></h2>
-            <span style="font-size:0.78rem; color:#6B7280; letter-spacing:0.06em; text-transform:uppercase;">Last 30 days</span>
-          </div>
 
-          <div class="activity-feed">
-            <div class="activity-item">
-              <div class="activity-dot"></div>
-              <div class="activity-text">
-                <p><strong>Session Completed</strong> — Strength &amp; Conditioning with Alex Beridze</p>
-                <span class="activity-time">Apr 28 · 09:00</span>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot green"></div>
-              <div class="activity-text">
-                <p><strong>Achievement Unlocked 🏆</strong> — "Consistent Athlete" — 20+ sessions this quarter</p>
-                <span class="activity-time">Apr 25</span>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot"></div>
-              <div class="activity-text">
-                <p><strong>Session Completed</strong> — Yoga &amp; Flexibility with Nino Kvaratskhelia</p>
-                <span class="activity-time">Apr 24 · 11:00</span>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot amber"></div>
-              <div class="activity-text">
-                <p><strong>Plan Renewed</strong> — Pro Plan auto-renewed for 6 months</p>
-                <span class="activity-time">Apr 20</span>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot"></div>
-              <div class="activity-text">
-                <p><strong>Session Completed</strong> — CrossFit HIIT with Giorgi Tabatadze</p>
-                <span class="activity-time">Apr 19 · 14:00</span>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot green"></div>
-              <div class="activity-text">
-                <p><strong>New Trainer Added</strong> — Started sessions with Mariam Dvalishvili (Cardio &amp; Nutrition)</p>
-                <span class="activity-time">Apr 10</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- ── SETTINGS ── -->
+        <!-- SETTINGS -->
         <div id="settings" class="account-panel">
-          <div class="panel-title-row">
-            <h2>Account <span class="accent">Settings</span></h2>
-          </div>
-
+          <div class="panel-title-row"><h2>Account <span class="accent">Settings</span></h2></div>
           <form class="settings-form" action="#" method="post">
-            <!-- Personal Info -->
             <h3 class="sub-heading">Personal Information</h3>
             <div class="form-row">
-              <div class="form-group">
-                <label for="s-fname">First Name</label>
-                <input type="text" id="s-fname" name="fname" value="Giorgi" />
-              </div>
-              <div class="form-group">
-                <label for="s-lname">Last Name</label>
-                <input type="text" id="s-lname" name="lname" value="Haritonashvili" />
-              </div>
+              <div class="form-group"><label for="sf-fname">First Name</label><input type="text" id="sf-fname" name="fname" value="Nikoloz" /></div>
+              <div class="form-group"><label for="sf-lname">Last Name</label><input type="text" id="sf-lname" name="lname" value="Tsikaridze" /></div>
             </div>
-            <div class="form-group">
-              <label for="s-email">Email Address</label>
-              <input type="email" id="s-email" name="email" value="giorgi.h@example.com" />
+            <div class="form-group"><label for="sf-email">Email Address</label><input type="email" id="sf-email" name="email" value="Nikts@fake.com" /></div>
+            <div class="form-row">
+              <div class="form-group"><label for="sf-phone">Phone Number</label><input type="text" id="sf-phone" name="phone" value="+995 555 123 456" /></div>
+              <div class="form-group"><label for="sf-dob">Date of Birth</label><input type="date" id="sf-dob" name="dob" value="2000-01-01" /></div>
             </div>
             <div class="form-row">
-              <div class="form-group">
-                <label for="s-phone">Phone Number</label>
-                <input type="text" id="s-phone" name="phone" value="+995 555 123 456" />
-              </div>
-              <div class="form-group">
-                <label for="s-dob">Date of Birth</label>
-                <input type="date" id="s-dob" name="dob" value="1998-03-14" />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="s-city">City</label>
-                <select id="s-city" name="city">
-                  <option selected>Tbilisi</option>
-                  <option>Batumi</option>
-                  <option>Kutaisi</option>
-                  <option>Rustavi</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="s-gender">Gender</label>
-                <select id="s-gender" name="gender">
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Prefer not to say</option>
-                </select>
-              </div>
+              <div class="form-group"><label for="sf-city">City</label><select id="sf-city" name="city"><option selected>Tbilisi</option><option>Batumi</option><option>Kutaisi</option><option>Rustavi</option></select></div>
+              <div class="form-group"><label for="sf-gender">Gender</label><select id="sf-gender" name="gender"><option>Male</option><option>Female</option><option>Prefer not to say</option></select></div>
             </div>
 
-            <!-- Password -->
             <h3 class="sub-heading" style="margin-top:2rem;">Change Password</h3>
             <div style="background:rgba(220,38,38,0.04); border:1px solid rgba(220,38,38,0.15); border-radius:10px; padding:0.85rem 1rem; margin-bottom:0.5rem;">
-              <p style="font-size:0.82rem; color:#9CA3AF;">🔒 Choose a strong password with at least 8 characters, one uppercase letter, and one number.</p>
+              <p style="font-size:0.82rem; color:#9CA3AF;">🔒 Min. 8 characters, one uppercase letter, and one number.</p>
             </div>
-            <div class="form-group">
-              <label for="s-old-pw">Current Password</label>
-              <input type="password" id="s-old-pw" name="old_pw" placeholder="Enter current password" />
-            </div>
+            <div class="form-group"><label for="sf-old-pw">Current Password</label><input type="password" id="sf-old-pw" name="old_pw" placeholder="Enter current password" /></div>
             <div class="form-row">
-              <div class="form-group">
-                <label for="s-new-pw">New Password</label>
-                <input type="password" id="s-new-pw" name="new_pw" placeholder="Min. 8 characters" />
-              </div>
-              <div class="form-group">
-                <label for="s-confirm-pw">Confirm Password</label>
-                <input type="password" id="s-confirm-pw" name="confirm_pw" placeholder="Repeat new password" />
-              </div>
+              <div class="form-group"><label for="sf-new-pw">New Password</label><input type="password" id="sf-new-pw" name="new_pw" placeholder="Min. 8 characters" /></div>
+              <div class="form-group"><label for="sf-confirm-pw">Confirm Password</label><input type="password" id="sf-confirm-pw" name="confirm_pw" placeholder="Repeat new password" /></div>
             </div>
-            <div style="margin-top:-0.5rem;">
-              <label class="modal-forgot-link" for="modal-forgot" style="font-size:0.8rem;">
-                Forgot your current password?
-              </label>
-            </div>
-
-            <!-- Training preferences -->
-            <h3 class="sub-heading" style="margin-top:2rem;">Training Preferences</h3>
-            <div class="form-group">
-              <label>Fitness Goals</label>
-              <div class="checkbox-group">
-                <label class="checkbox-label"><input type="checkbox" name="goal_strength" checked /> 💪 Build Strength</label>
-                <label class="checkbox-label"><input type="checkbox" name="goal_weight" /> ⚖️ Lose Weight</label>
-                <label class="checkbox-label"><input type="checkbox" name="goal_flex" /> 🧘 Flexibility</label>
-                <label class="checkbox-label"><input type="checkbox" name="goal_endurance" checked /> 🏃 Endurance</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Preferred Training Time</label>
-              <div class="radio-group">
-                <label class="radio-label"><input type="radio" name="pref_time" value="morning" checked /> Morning (7–12)</label>
-                <label class="radio-label"><input type="radio" name="pref_time" value="afternoon" /> Afternoon (12–17)</label>
-                <label class="radio-label"><input type="radio" name="pref_time" value="evening" /> Evening (17–21)</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Experience Level</label>
-              <div class="radio-group">
-                <label class="radio-label"><input type="radio" name="level" value="beginner" /> Beginner</label>
-                <label class="radio-label"><input type="radio" name="level" value="intermediate" checked /> Intermediate</label>
-                <label class="radio-label"><input type="radio" name="level" value="advanced" /> Advanced</label>
-              </div>
-            </div>
-
-            <!-- Notifications -->
-            <h3 class="sub-heading" style="margin-top:2rem;">Notifications</h3>
-            <div class="checkbox-group" style="flex-direction:column; gap:0.6rem;">
-              <label class="checkbox-label"><input type="checkbox" name="notif_sessions" checked /> 📅 Email reminders for upcoming sessions</label>
-              <label class="checkbox-label"><input type="checkbox" name="notif_offers" checked /> 🎁 Promotional offers &amp; new programs</label>
-              <label class="checkbox-label"><input type="checkbox" name="notif_blog" /> 📝 New blog posts &amp; fitness tips</label>
-              <label class="checkbox-label"><input type="checkbox" name="notif_sms" /> 📱 SMS reminders (24h before session)</label>
-              <label class="checkbox-label"><input type="checkbox" name="notif_achievements" checked /> 🏆 Achievement &amp; milestone alerts</label>
-            </div>
-
-            <!-- Privacy -->
-            <h3 class="sub-heading" style="margin-top:2rem;">Privacy</h3>
-            <div class="checkbox-group" style="flex-direction:column; gap:0.6rem;">
-              <label class="checkbox-label"><input type="checkbox" name="priv_profile" checked /> Show my profile to other members</label>
-              <label class="checkbox-label"><input type="checkbox" name="priv_progress" /> Share my progress on the leaderboard</label>
-            </div>
+            <label class="modal-forgot-link" for="modal-forgot" style="font-size:0.8rem;">Forgot your current password?</label>
 
             <div class="settings-actions">
               <button type="submit" class="form-submit">💾 Save Changes</button>
               <a href="index.html" class="settings-cancel">Cancel</a>
-              <!-- Danger zone -->
-              <div style="margin-left:auto; display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
-                <label for="modal-signout" style="font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#6B7280; cursor:pointer; transition:color 0.2s; padding:0.35rem 0.85rem; border:1px solid #1f2937; border-radius:6px;">
-                  🚪 Sign Out
-                </label>
+              <div style="margin-left:auto;">
+                <label for="modal-signout" style="font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#6B7280; cursor:pointer; padding:0.35rem 0.85rem; border:1px solid #1f2937; border-radius:6px;">🚪 Sign Out</label>
               </div>
             </div>
           </form>
         </div>
 
-      </div><!-- end account-content -->
+      </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="logo-icon">⚡</span>
-        <span>FITNESS HUB</span>
-        <p>Your journey starts here.</p>
-      </div>
+      <div class="footer-brand"><span class="logo-icon">⚡</span><span>FITNESS HUB</span><p>Your journey starts here.</p></div>
       <div class="footer-links">
         <h4>Navigate</h4>
-        <a href="index.html">Home</a>
-        <a href="gyms.html">Gym Finder</a>
-        <a href="gym-place.html">Gym Details</a>
-        <a href="account.html">My Account</a>
+        <a href="index.html">Home</a><a href="gyms.html">Gym Finder</a><a href="gym-place.html">Gym Details</a><a href="account.html">My Account</a>
       </div>
       <div class="footer-social">
         <h4>Follow Us</h4>
@@ -1401,9 +429,7 @@
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 FITNESS HUB. All rights reserved.</p>
-    </div>
+    <div class="footer-bottom"><p>&copy; 2026 FITNESS HUB. All rights reserved.</p></div>
   </footer>
 
 </body>
