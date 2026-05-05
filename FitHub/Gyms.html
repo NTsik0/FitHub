@@ -8,84 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Style nav container logo link dafixulia -->
-  <style>
-    /*  Map panel overrides  */
-    .nav-container {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important; /* Pushes logo left, links right */
-      width: 100% !important;
-      max-width: 100% !important; /* Forces it to ignore any 'grid' or 'container' limits */
-      padding: 0 2.5rem !important; /* Keeps it from touching the absolute glass edge */
-      box-sizing: border-box !important;
-    }
-
-    .nav-logo {
-      margin-right: auto !important;
-    }
-
-    .nav-links {
-      margin-left: auto !important;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem; /* Adds nice spacing between your menu items */
-    }
-
-    /* Keep the hamburger hidden on desktop */
-    .hamburger {
-      margin-left: 1.5rem;
-    }
-    .map-stat-box {
-      background: var(--dark-card2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.8rem 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.6rem;
-    }
-    .map-stat-label { font-size: 0.8rem; color: var(--text-muted); }
-    .map-stat-val   { font-family: var(--font-display); font-size: 1.4rem; color: var(--red); letter-spacing: 0.05em; }
-    .map-stat-val.amber { color: #F59E0B; }
-    .map-stat-val.white { color: var(--text); }
-
-    /* City tab strip */
-    .map-city-tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
-    .map-city-tab {
-      padding: 0.32rem 0.75rem;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 6px;
-      color: #9CA3AF;
-      background: #161616;
-      border: 1px solid #1f2937;
-      text-decoration: none;
-      transition: all 0.2s;
-      display: inline-block;
-    }
-    .map-city-tab:hover { background: rgba(220,38,38,0.1); border-color: rgba(220,38,38,0.4); color: #DC2626; }
-
-    /* Map iframe wrapper */
-    .map-frame-box {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(220,38,38,0.22);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.55);
-    }
-    .map-frame-box iframe {
-      display: block;
-      width: 100%;
-      height: 340px;
-      border: 0;
-      /* slight dark treatment to match site theme */
-      filter: grayscale(30%) brightness(0.88) contrast(1.1);
-    }
-  </style>
 </head>
 <body class="gyms-page">
 
@@ -171,7 +93,7 @@
     <!-- GYM LIST + MAP -->
     <section class="gyms-layout section-container" id="gym-list">
 
-      <!--  GYM LIST  -->
+      <!-- GYM LIST -->
       <div class="gyms-list">
 
         <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.5rem;">
@@ -181,7 +103,7 @@
           </span>
         </div>
 
-        <!-- 1 - Rule Fitness, Batumi, Premium -->
+        <!-- 1 - Rule Fitness -->
         <article class="gym-list-card">
           <div class="glc-img" style="background-image:url('Images/Rulefit.png')"></div>
           <div class="glc-body">
@@ -201,7 +123,7 @@
           </div>
         </article>
 
-        <!-- 2 - Olympia Fitness, Batumi, Budget -->
+        <!-- 2 - Olympia Fitness -->
         <article class="gym-list-card">
           <div class="glc-img" style="background-image:url('Images/Olympiafit.jpg')"></div>
           <div class="glc-body">
@@ -221,7 +143,7 @@
           </div>
         </article>
 
-        <!-- 3 - Gladiator Fitness, Tbilisi, Premium -->
+        <!-- 3 - Gladiator Fitness -->
         <article class="gym-list-card">
           <div class="glc-img" style="background-image:url('Images/Gladiatorfit.jpg')"></div>
           <div class="glc-body">
@@ -241,7 +163,7 @@
           </div>
         </article>
 
-        <!-- 4 - Extreme Fit, Batumi, Budget -->
+        <!-- 4 - Extreme Fit -->
         <article class="gym-list-card">
           <div class="glc-img" style="background-image:url('Images/FitnessCentre.png')"></div>
           <div class="glc-body">
@@ -261,7 +183,7 @@
           </div>
         </article>
 
-        <!-- 5 - Reformer Fitness, Tbilisi, Premium -->
+        <!-- 5 - Reformer Fitness -->
         <article class="gym-list-card">
           <div class="glc-img" style="background-image:url('Images/Reformerfit.jpg')"></div>
           <div class="glc-body">
@@ -281,7 +203,7 @@
           </div>
         </article>
 
-        <!-- 6 - Iron Temple, Tbilisi, Budget -->
+        <!-- 6 - Iron Temple -->
         <article class="gym-list-card">
           <div class="glc-img" style="background-image:url('Images/smallgym.png')"></div>
           <div class="glc-body">
@@ -301,7 +223,7 @@
           </div>
         </article>
 
-        <!-- 7 - Flow Studio, Kutaisi, Budget -->
+        <!-- 7 - Flow Studio -->
         <article class="gym-list-card">
           <div class="glc-img" style="background-image:url('Images/crossfit.jpg.png')"></div>
           <div class="glc-body">
@@ -321,7 +243,7 @@
           </div>
         </article>
 
-        <!-- 8 - Arena Combat Club, Tbilisi, Premium -->
+        <!-- 8 - Arena Combat Club -->
         <article class="gym-list-card">
           <div class="glc-img" style="background-image:url('Images/yoga.jpg.png')"></div>
           <div class="glc-body">
@@ -341,7 +263,7 @@
           </div>
         </article>
 
-        <!-- 9 - Velocity CrossFit, Rustavi, Budget -->
+        <!-- 9 - Velocity CrossFit -->
         <article class="gym-list-card">
           <div class="glc-img" style="background-image:url('Images/Loginfit.png')"></div>
           <div class="glc-body">
@@ -361,9 +283,9 @@
           </div>
         </article>
 
-      </div><
+      </div>
 
-      <!-- RUKIS PANELI -->
+      <!-- Gymebis rukis paneli / dasrulebuli bolomde -->
       <aside class="gyms-map-panel">
 
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; flex-wrap:wrap; gap:0.5rem;">
@@ -374,8 +296,6 @@
         </div>
 
         <p class="map-hint">Click a city tab to zoom in. Use "📍 View on Map" on any card to open the location directly.</p>
-
-        <!--RANDOM COORDINATES FROM OPENSTREETMAP ( FREE MAP SOURCE GOOGLE MAPS BLOCKING COORDINATES FOR ME......) -->
 
         <div class="map-city-tabs">
           <a href="https://www.openstreetmap.org/export/embed.html?bbox=40.0%2C41.0%2C46.7%2C43.6&layer=mapnik"
@@ -390,7 +310,6 @@
              target="gymMap" class="map-city-tab">📍 Rustavi</a>
         </div>
 
-        <!-- iframe ruka - grayscale 30 brigthness 0.85 contrast 1.1 -->
         <div class="map-frame-box">
           <iframe
             name="gymMap"
@@ -404,13 +323,11 @@
           ></iframe>
         </div>
 
-        <!-- PREMIUM-BUDGET wertili -->
-        <div class="map-legend" style="margin-top:0.85rem;">
+        <div class="map-legend">
           <span class="legend-item"><span class="legend-dot premium-dot"></span> Premium</span>
           <span class="legend-item"><span class="legend-dot budget-dot"></span> Budget</span>
         </div>
 
-        <!-- Stats -->
         <div class="map-stat-box">
           <span class="map-stat-label">Total Gyms</span>
           <span class="map-stat-val">9</span>

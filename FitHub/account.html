@@ -8,138 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css" />
-  <!-- SCRIPT DASRULEBULI ( style.css dan amoshlili ( DONE ) )-->
-   <!-- PIRVELI 3 .nav - ebi dafixulia zemota bar-->
-  <style>
-    
-    .nav-container {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important; /* Pushes logo left, links right */
-      width: 100% !important;
-      max-width: 100% !important; /* Forces it to ignore any 'grid' or 'container' limits */
-      padding: 0 2.5rem !important; /* Keeps it from touching the absolute glass edge */
-      box-sizing: border-box !important;
-    }
-
-    .nav-logo {
-      margin-right: auto !important;
-    }
-
-    .nav-links {
-      margin-left: auto !important;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem; /* Adds nice spacing between your menu items */
-    }
-
-    /* Keep the hamburger hidden on desktop */
-    .hamburger {
-      margin-left: 1.5rem;
-    }
-  .modal-toggle { display: none; }
-
-  .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.82);
-    backdrop-filter: blur(6px);
-    z-index: 999;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.35s ease;
-  }
-  #modal-forgot:checked  ~ .modal-overlay-forgot,
-  #modal-signout:checked ~ .modal-overlay-signout { opacity: 1; pointer-events: all; }
-
-  .modal-box {
-    background: #111; border: 1px solid rgba(220,38,38,0.3); border-radius: 20px;
-    padding: 2.5rem 2.25rem 2rem; width: 100%; max-width: 440px;
-    position: relative;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px rgba(220,38,38,0.12);
-    transform: translateY(30px) scale(0.96);
-    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
-    opacity: 0;
-  }
-  #modal-forgot:checked  ~ .modal-overlay-forgot  .modal-box,
-  #modal-signout:checked ~ .modal-overlay-signout .modal-box { transform: translateY(0) scale(1); opacity: 1; }
-
-  .modal-close {
-    position: absolute; top: 1rem; right: 1rem;
-    width: 32px; height: 32px;
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; font-size: 1rem; color: #9CA3AF;
-    transition: background 0.2s, color 0.2s, transform 0.15s;
-    user-select: none;
-  }
-  .modal-close:hover { background: rgba(220,38,38,0.15); color: #DC2626; transform: scale(1.1); }
-  .modal-backdrop-close { position: absolute; inset: 0; cursor: pointer; z-index: -1; }
-
-  .modal-logo { display: flex; align-items: center; gap: 0.5rem; font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.15em; color: #DC2626; margin-bottom: 1.5rem; }
-  .modal-box h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.06em; color: #F3F4F6; margin-bottom: 0.3rem; }
-  .modal-box .modal-sub { font-size: 0.85rem; color: #9CA3AF; margin-bottom: 1.75rem; }
-
-  .modal-form { display: flex; flex-direction: column; gap: 1rem; }
-  .modal-field { display: flex; flex-direction: column; gap: 0.35rem; }
-  .modal-field label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6B7280; }
-  .modal-field input {
-    background: #161616; border: 1px solid #1f2937; border-radius: 10px;
-    padding: 0.75rem 1rem; color: #F3F4F6; font-family: 'Barlow', sans-serif;
-    font-size: 0.95rem; outline: none; width: 100%;
-    transition: border-color 0.28s, box-shadow 0.28s;
-  }
-  .modal-field input:focus { border-color: #DC2626; box-shadow: 0 0 0 3px rgba(220,38,38,0.18); }
-  .modal-field input::placeholder { color: #374151; }
-  .modal-forgot-link { font-size: 0.78rem; color: #DC2626; font-weight: 600; letter-spacing: 0.05em; cursor: pointer; transition: color 0.2s; text-decoration: underline; text-underline-offset: 3px; }
-  .modal-forgot-link:hover { color: #F87171; }
-
-  .modal-submit {
-    padding: 0.85rem 1.5rem; background: #DC2626; color: #fff;
-    font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 0.14em;
-    border: none; border-radius: 10px; cursor: pointer;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s; margin-top: 0.25rem;
-  }
-  .modal-submit:hover { background: #A31C1C; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(220,38,38,0.35); }
-
-  .modal-switch { text-align: center; font-size: 0.82rem; color: #9CA3AF; margin-top: 0.25rem; }
-  .modal-switch label { color: #DC2626; font-weight: 700; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
-
-  .modal-box.signout-box { text-align: center; max-width: 380px; }
-  .signout-icon { font-size: 3rem; text-align: center; margin-bottom: 1rem; display: block; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-  .signout-box h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
-  .signout-box p { font-size: 0.9rem; color: #9CA3AF; margin-bottom: 1.75rem; line-height: 1.6; }
-  .signout-actions { display: flex; gap: 0.75rem; }
-  .signout-cancel { flex: 1; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid #1f2937; border-radius: 10px; color: #9CA3AF; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.1em; cursor: pointer; transition: background 0.2s, color 0.2s; }
-  .signout-cancel:hover { background: rgba(255,255,255,0.08); color: #F3F4F6; }
-  .signout-confirm { flex: 1; padding: 0.8rem; background: #DC2626; border: none; border-radius: 10px; color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.1em; cursor: pointer; transition: background 0.2s, transform 0.15s; }
-  .signout-confirm:hover { background: #A31C1C; transform: translateY(-1px); }
-
-  .account-nav-item.nav-danger { color: #6B7280; }
-  .account-nav-item.nav-danger:hover { color: #F87171; background: rgba(248,113,113,0.05); border-left-color: #F87171; }
-
-  .progress-bar { height: 4px; background: #1f2937; border-radius: 2px; margin-top: 0.5rem; overflow: hidden; }
-  .progress-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #A31C1C, #DC2626); }
-
-  .profile-avatar-large { display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(220,38,38,0.07), rgba(10,10,10,0.9)); border: 1px solid rgba(220,38,38,0.2); border-radius: 16px; margin-bottom: 1.5rem; flex-wrap: wrap; }
-  .pal-circle { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #A31C1C, #DC2626); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: #fff; letter-spacing: 0.1em; flex-shrink: 0; box-shadow: 0 0 24px rgba(220,38,38,0.35); border: 3px solid rgba(220,38,38,0.4); }
-  .pal-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.05em; color: #F3F4F6; }
-  .pal-info p { font-size: 0.82rem; color: #9CA3AF; margin-top: 0.2rem; }
-  .pal-actions { margin-left: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-  .pal-btn { padding: 0.4rem 0.9rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 6px; cursor: pointer; transition: all 0.2s; border: 1px solid rgba(220,38,38,0.35); color: #DC2626; background: transparent; }
-  .pal-btn:hover { background: #DC2626; color: #fff; }
-  .pal-btn.pal-btn-solid { background: #DC2626; color: #fff; border-color: #DC2626; }
-  .pal-btn.pal-btn-solid:hover { background: #A31C1C; }
-
-  .settings-form input, .settings-form select, .settings-form input[type="date"] {
-    background: #161616 !important; border: 1px solid #1f2937 !important; color: #F3F4F6 !important;
-    border-radius: 8px; padding: 0.7rem 1rem; font-family: 'Barlow', sans-serif; font-size: 0.9rem;
-    outline: none; width: 100%; color-scheme: dark;
-  }
-  .settings-form input:focus, .settings-form select:focus { border-color: #DC2626 !important; box-shadow: 0 0 0 3px rgba(220,38,38,0.18); }
-  .settings-form input::placeholder { color: #374151; }
-  @media (max-width: 480px) { .modal-box { padding: 2rem 1.25rem 1.5rem; } }
-</style>
 </head>
 <body class="account-page">
 
@@ -148,8 +16,7 @@
   <input type="checkbox" id="modal-forgot"  class="modal-toggle" />
   <input type="checkbox" id="modal-signout" class="modal-toggle" />
 
-  
-  <!--  FORGOT PASSWORD -->
+  <!-- FORGOT PASSWORD -->
   <div class="modal-overlay modal-overlay-forgot">
     <label class="modal-backdrop-close" for="modal-forgot"></label>
     <div class="modal-box">
@@ -158,9 +25,9 @@
       <h2>Reset Password</h2>
       <p class="modal-sub">Enter your email and we'll send you a reset link within 5 minutes.</p>
       <form class="modal-form" action="#" method="post">
-        <div class="modal-field"><label for="f-email">Email Address</label><input type="email" id="f-email" name="email" placeholder="giorgi.h@example.com" /></div>
-        <div style="background:rgba(220,38,38,0.06); border:1px solid rgba(220,38,38,0.2); border-radius:10px; padding:0.85rem 1rem;">
-          <p style="font-size:0.82rem; color:#9CA3AF; line-height:1.6;">🔒 We'll send a secure link. It expires in <strong style="color:#F3F4F6;">30 minutes.</strong></p>
+        <div class="modal-field"><label for="f-email">Email Address</label><input type="email" id="f-email" name="email" placeholder="chemifakemaili@gmail.com" /></div>
+        <div class="security-info">
+          <p>🔒 We'll send a secure link. It expires in <strong>30 minutes.</strong></p>
         </div>
         <button type="submit" class="modal-submit">Send Reset Link →</button>
         <p class="modal-switch">Remember your password? <label for="modal-login">Back to Login</label></p>
@@ -178,7 +45,7 @@
       <p>You'll be logged out of FITNESS HUB. Any unsaved changes will be lost.</p>
       <div class="signout-actions">
         <label class="signout-cancel" for="modal-signout">Cancel</label>
-        <a href="index.html" class="signout-confirm" style="display:flex;align-items:center;justify-content:center;text-decoration:none;">Yes, Sign Out</a>
+        <a href="index.html" class="signout-confirm">Yes, Sign Out</a>
       </div>
     </div>
   </div>
@@ -194,7 +61,7 @@
         <li><a href="index.html#instructors-section" class="nav-link">Instructors</a></li>
         <li><a href="index.html#contact" class="nav-link">Contact</a></li>
         <li><a href="account.html" class="nav-link active">Account</a></li>
-        <li><a href="gym-place.html" class="nav-link nav-cta">Find a Gym</a></li>
+        <li><a href="gyms.html" class="nav-link nav-cta">Find a Gym</a></li>
       </ul>
       <label class="hamburger" for="mobile-toggle-account"><span></span><span></span><span></span></label>
       <input type="checkbox" id="mobile-toggle-account" class="mobile-toggle-input" />
@@ -211,15 +78,14 @@
     <section class="account-hero">
       <div class="account-hero-inner">
         <div class="account-avatar">
-          <span class="avatar-initials">GH</span>
+          <span class="avatar-initials">NT</span>
           <span class="avatar-badge">Active</span>
         </div>
         <div class="account-hero-text">
           <span class="page-tag">Member Profile</span>
-          <h1>Giorgi <span class="accent">Haritonashvili</span></h1>
-          <p class="account-since">Member since January 2025 &nbsp;·&nbsp; Pro Plan &nbsp;·&nbsp; Tbilisi, Georgia</p>
+          <h1>Nikoloz <span class="accent">Tsikaridze</span></h1>
+          <p class="account-since">Member since 2026 &nbsp;&nbsp; Kutaisi, Georgia</p>
         </div>
-
       </div>
     </section>
 
@@ -232,44 +98,35 @@
           <a href="#bookings"   class="account-nav-item"><span class="anav-icon">📅</span> Bookings</a>
           <a href="#trainers"   class="account-nav-item"><span class="anav-icon">🏋️</span> Trainers</a>
           <a href="#settings"   class="account-nav-item"><span class="anav-icon">⚙️</span> Settings</a>
-          <label for="modal-signout" class="account-nav-item nav-danger" style="cursor:pointer;"><span class="anav-icon">🚪</span> Sign Out</label>
+          <label for="modal-signout" class="account-nav-item nav-danger"><span class="anav-icon">🚪</span> Sign Out</label>
         </nav>
-
       </aside>
-
-      <!-- CONTENT -->
       <div class="account-content">
-
-
-
-        <!-- PROFILISTVIS ( BOLOMDE DASRULEBULI ) -->
+        <!-- MYPROFILE - made static know for finals i'll use js -->
         <div id="profile" class="account-panel">
           <div class="panel-title-row">
             <h2>Profile <span class="accent">Details</span></h2>
             <a href="#settings" class="panel-edit-btn">✏️ Edit Profile</a>
           </div>
           <div class="profile-avatar-large">
-            <div class="pal-circle">GH</div>
+            <div class="pal-circle">NT</div>
             <div class="pal-info">
-              <h3>Giorgi Haritonashvili</h3>
-              <p>giorgi.h@example.com &nbsp;·&nbsp; Pro Member since Jan 2025</p>
-              <div style="display:flex; gap:0.5rem; margin-top:0.6rem; flex-wrap:wrap;">
+              <h3> Nikoloz Tsikaridze</h3>
+              <p>Chemifakemaili@gmail.com &nbsp;·&nbsp; Pro Member since 2026</p>
+              <div class="goal-tags" style="margin-top:0.6rem;">
                 <span class="goal-tag">💪 Strength</span>
                 <span class="goal-tag">🏃 Endurance</span>
-                <span class="goal-tag">⚖️ Weight</span>
               </div>
             </div>
             <div class="pal-actions">
               <button class="pal-btn pal-btn-solid">📷 Photo</button>
-              <button class="pal-btn">Share</button>
             </div>
           </div>
           <div style="margin-bottom:1.5rem;">
-            <span class="field-label" style="font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#6B7280; display:block; margin-bottom:0.6rem;">Training Goals</span>
+            <span class="field-label">Training Goals</span>
             <div class="goal-tags">
               <span class="goal-tag">💪 Build Strength</span>
               <span class="goal-tag">🏃 Endurance</span>
-              <span class="goal-tag">⚖️ Weight Management</span>
             </div>
           </div>
           <div class="stats-row">
@@ -292,19 +149,21 @@
               <span class="mc-plan">Pro Plan</span>
               <p class="mc-includes">Unlimited classes · Personal trainer · All gyms access</p>
               <div class="mc-dates">
-                <span>Started: <strong>1 Jan 2025</strong></span>
-                <span>Renews: <strong>1 Jul 2025</strong></span>
+                <span>Started: <strong>1 Jan 2026</strong></span>
+                <span>Renews: <strong>1 Jul 2026</strong></span>
               </div>
               <div style="margin-top:0.9rem;">
-                <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#9CA3AF; margin-bottom:0.4rem;"><span>Days remaining</span><span style="color:#F3F4F6; font-weight:700;">61 days</span></div>
-                <div class="progress-bar" style="height:6px;"><div class="progress-fill" style="width:34%; background:linear-gradient(90deg,#DC2626,#F59E0B);"></div></div>
+                <div class="progress-meta">
+                  <span>Days remaining</span><span>61 days</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width:34%;"></div></div>
               </div>
             </div>
             <div class="mc-right">
               <span class="mc-price">₾380</span>
               <span class="mc-period">/ 6 months</span>
               <span class="mc-status active-status">● Active</span>
-              <button style="margin-top:0.5rem; padding:0.4rem 0.8rem; background:rgba(220,38,38,0.1); border:1px solid rgba(220,38,38,0.3); border-radius:8px; color:#DC2626; font-size:0.73rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer;">Auto-renew ON</button>
+              <button class="auto-renew-btn">Auto-renew ON</button>
             </div>
           </div>
           <h3 class="sub-heading">Available Plans</h3>
@@ -316,58 +175,45 @@
           </div>
         </div>
 
-        <!-- JAVSHNEBI ( BOLOMDE DASRULEBULI ) -->
+        <!-- Bookings - saboloo -->
         <div id="bookings" class="account-panel">
           <div class="panel-title-row">
             <h2>My <span class="accent">Schedule</span></h2>
             <a href="index.html#contact" class="panel-edit-btn">+ Book Session</a>
           </div>
-          <p style="font-size:0.85rem; color:#9CA3AF; margin-bottom:1.25rem;">Weekly sessions with <strong style="color:#F3F4F6;">Alex Beridze</strong> — Strength &amp; Conditioning</p>
-          <style>
-            .session-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
-            .session-table th { background:#161616; color:#6B7280; font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:0.65rem 1rem; text-align:left; border-bottom:1px solid #1f2937; }
-            .session-table td { padding:0.75rem 1rem; border-bottom:1px solid #1f2937; color:#9CA3AF; vertical-align:middle; }
-            .session-table tr:last-child td { border-bottom:none; }
-            .session-table tr:hover td { background:rgba(220,38,38,0.04); }
-            .session-table td:first-child { color:#F3F4F6; font-weight:600; }
-            .s-badge { display:inline-block; padding:0.2rem 0.6rem; border-radius:5px; font-size:0.72rem; font-weight:700; letter-spacing:0.06em; }
-            .s-upcoming { background:rgba(220,38,38,0.12); color:#DC2626; }
-            .s-done { background:rgba(34,197,94,0.1); color:#22C55E; }
-            .s-rest { background:rgba(255,255,255,0.05); color:#4B5563; }
-          </style>
-          <table class="session-table">
-            <thead>
-              <tr><th>Day</th><th>Session Type</th><th>Time</th><th>Location</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Monday</td><td>Strength &amp; Conditioning</td><td>09:00 – 10:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-done">Done</span></td></tr>
-              <tr><td>Wednesday</td><td>Upper Body Power</td><td>09:00 – 10:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-done">Done</span></td></tr>
-              <tr><td>Friday</td><td>Full Body Circuit</td><td>09:00 – 10:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-upcoming">Upcoming</span></td></tr>
-              <tr><td>Saturday</td><td>Core &amp; Mobility</td><td>10:00 – 11:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-upcoming">Upcoming</span></td></tr>
-              <tr><td>Tuesday / Thursday</td><td>—</td><td>—</td><td>—</td><td><span class="s-badge s-rest">Rest Day</span></td></tr>
-            </tbody>
-          </table>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.25rem;">Weekly sessions with <strong>Alex Beridze</strong> — Strength &amp; Conditioning</p>
+          <div class="table-wrapper">
+            <table class="session-table">
+              <thead>
+                <tr><th>Day</th><th>Session Type</th><th>Time</th><th>Location</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Monday</td><td>Strength &amp; Conditioning</td><td>09:00 – 10:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-done">Done</span></td></tr>
+                <tr><td>Wednesday</td><td>Upper Body Power</td><td>09:00 – 10:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-done">Done</span></td></tr>
+                <tr><td>Friday</td><td>Full Body Circuit</td><td>09:00 – 10:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-upcoming">Upcoming</span></td></tr>
+                <tr><td>Saturday</td><td>Core &amp; Mobility</td><td>10:00 – 11:00</td><td>Gladiator Fitness</td><td><span class="s-badge s-upcoming">Upcoming</span></td></tr>
+                <tr><td>Tuesday / Thursday</td><td>—</td><td>—</td><td>—</td><td><span class="s-badge s-rest">Rest Day</span></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <!-- TRAINER -->
+        <!-- TRAINER - dasrulebuli -->
         <div id="trainers" class="account-panel">
           <div class="panel-title-row">
             <h2>My <span class="accent">Trainer</span></h2>
             <a href="index.html#instructors-section" class="panel-edit-btn">Change Trainer</a>
           </div>
-          <div class="my-trainer-card" style="display:flex; align-items:center; gap:1.5rem; background:linear-gradient(135deg,rgba(220,38,38,0.07),rgba(10,10,10,0.9)); border:1px solid rgba(220,38,38,0.2); border-radius:16px; padding:1.5rem; flex-wrap:wrap;">
-            <div class="mt-avatar" style="background-image:url('https://placehold.co/80x80/111/DC2626?text=AB'); width:80px; height:80px; border-radius:50%; background-color:#111; background-size:cover; flex-shrink:0; border:3px solid rgba(220,38,38,0.4);"></div>
-            <div class="mt-info" style="flex:1;">
-              <h4 style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.05em; color:#F3F4F6; margin-bottom:0.2rem;">Alex Beridze</h4>
-              <p class="mt-spec" style="font-size:0.85rem; color:#9CA3AF;">Strength &amp; Conditioning</p>
-              <p class="mt-sessions" style="font-size:0.8rem; color:#6B7280; margin-top:0.3rem;">12 sessions completed &nbsp;·&nbsp; Member since Jan 2025</p>
-              <div class="mt-stars" style="color:#F59E0B; margin-top:0.4rem; font-size:1rem;">★★★★★</div>
+          <div class="my-trainer-card">
+            <div class="mt-avatar" style="background-image:url('Images/TrainerALEX.png');"></div>
+            <div class="mt-info">
+              <h4>Alex Beridze</h4>
+              <p class="mt-spec">Strength &amp; Conditioning</p>
+              <p class="mt-sessions">12 sessions completed &nbsp;·&nbsp; Member since Jan 2020</p>
+              <div class="mt-stars">★★★★★</div>
             </div>
-
           </div>
         </div>
-
-
 
         <!-- SETTINGS -->
         <div id="settings" class="account-panel">
@@ -378,7 +224,7 @@
               <div class="form-group"><label for="sf-fname">First Name</label><input type="text" id="sf-fname" name="fname" value="Nikoloz" /></div>
               <div class="form-group"><label for="sf-lname">Last Name</label><input type="text" id="sf-lname" name="lname" value="Tsikaridze" /></div>
             </div>
-            <div class="form-group"><label for="sf-email">Email Address</label><input type="email" id="sf-email" name="email" value="Nikts@fake.com" /></div>
+            <div class="form-group"><label for="sf-email">Email Address</label><input type="email" id="sf-email" name="email" value="chemifakemaili@gmail.com" /></div>
             <div class="form-row">
               <div class="form-group"><label for="sf-phone">Phone Number</label><input type="text" id="sf-phone" name="phone" value="+995 555 123 456" /></div>
               <div class="form-group"><label for="sf-dob">Date of Birth</label><input type="date" id="sf-dob" name="dob" value="2000-01-01" /></div>
@@ -389,22 +235,20 @@
             </div>
 
             <h3 class="sub-heading" style="margin-top:2rem;">Change Password</h3>
-            <div style="background:rgba(220,38,38,0.04); border:1px solid rgba(220,38,38,0.15); border-radius:10px; padding:0.85rem 1rem; margin-bottom:0.5rem;">
-              <p style="font-size:0.82rem; color:#9CA3AF;">🔒 Min. 8 characters, one uppercase letter, and one number.</p>
+            <div class="pw-hint">
+              <p>🔒 Min. 8 characters, one uppercase letter, and one number.</p>
             </div>
             <div class="form-group"><label for="sf-old-pw">Current Password</label><input type="password" id="sf-old-pw" name="old_pw" placeholder="Enter current password" /></div>
             <div class="form-row">
               <div class="form-group"><label for="sf-new-pw">New Password</label><input type="password" id="sf-new-pw" name="new_pw" placeholder="Min. 8 characters" /></div>
               <div class="form-group"><label for="sf-confirm-pw">Confirm Password</label><input type="password" id="sf-confirm-pw" name="confirm_pw" placeholder="Repeat new password" /></div>
             </div>
-            <label class="modal-forgot-link" for="modal-forgot" style="font-size:0.8rem;">Forgot your current password?</label>
+            <label class="modal-forgot-link" for="modal-forgot">Forgot your current password?</label>
 
             <div class="settings-actions">
               <button type="submit" class="form-submit">💾 Save Changes</button>
               <a href="index.html" class="settings-cancel">Cancel</a>
-              <div style="margin-left:auto;">
-                <label for="modal-signout" style="font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#6B7280; cursor:pointer; padding:0.35rem 0.85rem; border:1px solid #1f2937; border-radius:6px;">🚪 Sign Out</label>
-              </div>
+              <label for="modal-signout" class="signout-inline-btn">🚪 Sign Out</label>
             </div>
           </form>
         </div>

@@ -8,137 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css" />
-
-
-  <style>
-    
-  
-    .nav-container {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important; 
-      width: 100% !important;
-      max-width: 100% !important; 
-      padding: 0.5rem 2rem !important; 
-      box-sizing: border-box !important;
-    } 
-    .nav-logo {
-      margin-right: auto !important; 
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-links {
-      margin-left: auto !important; 
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    /*  header gasworebuli saboloo / importantebi gamoyenebulia overridebistvis */
-    .section-header {
-      display: block !important;        
-      text-align: left;
-      margin-bottom: 2.5rem;
-    }
-    .section-subtitle {
-      display: block !important;
-      margin-top: 0.5rem !important;
-      text-align: left !important;
-      width: auto !important;
-      margin-left: 0 !important;
-    }
-    
-    #places-section .section-header {
-      display: flex !important;
-      align-items: baseline;
-      justify-content: space-between;
-    }
-
-    /* IFRAME ADGILISTVIS */
-    .map-section-layout {
-      display: flex;
-      gap: 1rem;
-      align-items: stretch;
-      flex-wrap: nowrap;
-      background: #0a0a0a;
-      padding: 1rem;
-      border-radius: 12px;
-    }
-    .map-iframe-wrap {
-      flex: 3;
-      min-width: 300px;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid #262626;
-    }
-    .map-iframe-wrap iframe {
-      display: block;
-      width: 100%;
-      height: 450px;
-      filter: contrast(1.2);
-      border: 0;
-    }
-    .map-locations-panel {
-      flex: 1;
-      min-width: 260px;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      padding-right: 0;
-    }
-    .map-locations-panel::-webkit-scrollbar { width: 4px; }
-    .map-locations-panel::-webkit-scrollbar-track { background: #0a0a0a; }
-    .map-locations-panel::-webkit-scrollbar-thumb { background: #262626; border-radius: 10px; }
-
-    .map-loc-card {
-      background: #0f0f0f;
-      border: 1px solid #1f1f1f;
-      border-radius: 6px;
-      padding: 0.75rem;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-    .map-loc-card:hover {
-      border-color: #DC2626;
-      background: #141414;
-    }
-    .mlc-top { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; }
-    .mlc-dot { width: 6px; height: 6px; border-radius: 50%; }
-    .mlc-dot.red   { background: #DC2626; box-shadow: 0 0 6px #DC2626; }
-    .mlc-dot.green { background: #4ADE80; box-shadow: 0 0 6px #4ADE80; }
-    .mlc-name { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; color: #fff; }
-    .mlc-badge {
-      margin-left: auto;
-      font-size: 0.55rem;
-      font-weight: 800;
-      padding: 0.1rem 0.4rem;
-      border-radius: 3px;
-      text-transform: uppercase;
-    }
-    .mlc-badge.premium { color: #DC2626; border: 1px solid #DC2626; background: rgba(220,38,38,0.05); }
-    .mlc-badge.budget  { color: #4ADE80; border: 1px solid #4ADE80; background: rgba(74,222,128,0.05); }
-    .mlc-city, .mlc-addr { font-size: 0.7rem; color: #737373; margin-left: 0.9rem; }
-    .mlc-open-btn {
-      display: block;
-      margin-top: 0.6rem;
-      margin-left: 0.9rem;
-      font-size: 0.6rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: #DC2626;
-      text-decoration: none;
-    }
-    /* @media */
-    @media (max-width: 992px) {
-      .map-section-layout { flex-direction: column; }
-      .map-locations-panel { max-height: none; width: 100%; }
-      .map-iframe-wrap { height: 300px; }
-    }
-  </style>
 </head>
 <body>
 
@@ -148,12 +17,12 @@
         <span class="logo-icon">⚡</span>FITNESS HUB
       </a>
       <ul class="nav-links">
-        <li><a href="#hero"               class="nav-link">Home</a></li>
-        <li><a href="gyms.html"           class="nav-link">Places</a></li>
-        <li><a href="#schedule"           class="nav-link">Schedule</a></li>
+        <li><a href="#hero"                class="nav-link">Home</a></li>
+        <li><a href="gyms.html"            class="nav-link">Places</a></li>
+        <li><a href="#schedule"            class="nav-link">Schedule</a></li>
         <li><a href="#instructors-section" class="nav-link">Instructors</a></li>
-        <li><a href="#contact"            class="nav-link">Contact</a></li>
-        <li><a href="account.html"        class="nav-link nav-cta">Account</a></li>
+        <li><a href="#contact"             class="nav-link">Contact</a></li>
+        <li><a href="account.html"         class="nav-link nav-cta">Account</a></li>
       </ul>
       <label class="hamburger" for="mobile-toggle">
         <span></span><span></span><span></span>
@@ -200,7 +69,7 @@
       </div>
     </section>
 
-    <!-- Book banner - dasajavshni -->
+    <!-- Book banner -->
     <section class="book-banner">
       <div class="book-banner-inner">
         <div class="book-banner-text">
@@ -211,7 +80,7 @@
       </div>
     </section>
 
-    <!-- features strip - ras vtavazobt -->
+    <!-- Dziritadi shetavazebebi -->
     <section class="features-strip">
       <div class="feature-item">
         <span class="feature-icon">🏋️</span>
@@ -235,7 +104,7 @@
       </div>
     </section>
 
-    <!-- gym card-ebi modzraobit scrollebit -->
+    <!-- chvens mier shetavazebuli fitnes darbazebi  -->
     <section id="places-section" class="section-container">
       <div class="section-header">
         <h2 class="section-title">Featured <span class="accent">Fitness Centres</span></h2>
@@ -294,7 +163,7 @@
       </div>
     </section>
 
-    <!-- INSTRUCTORS -->
+    <!-- Instructorebis seqcia / dasrulebuli -->
     <section id="instructors-section" class="section-container section-dark">
       <div class="section-header">
         <h2 class="section-title">Meet Our <span class="accent">Instructors</span></h2>
@@ -340,7 +209,7 @@
       </div>
     </section>
 
-    <!-- SCHEDULE  -->
+    <!-- Schedule / dasrulebuli  -->
     <section id="schedule" class="section-container">
       <div class="section-header">
         <h2 class="section-title">Weekly <span class="accent">Schedule</span></h2>
@@ -402,7 +271,7 @@
       <p class="table-note">🟢 Available = open to book &nbsp;|&nbsp; 🔴 Booked = session taken</p>
     </section>
 
-    <!-- RUKA IFRAME -->
+    <!-- Rukis seqcia / gamartuli / dasrulebuli iframeti  -->
     <section id="map-section" class="section-container section-dark">
       <div class="section-header">
         <h2 class="section-title">Find Us on <span class="accent">the Map</span></h2>
@@ -462,7 +331,7 @@
       </div>
     </section>
 
-    <!-- Contact informacia -->
+    <!-- Contanct info - Book a session - inputs ... dasrulebuli -->
     <section id="contact" class="section-container">
       <div class="section-header">
         <h2 class="section-title">Book a Session &amp; <span class="accent">Register</span></h2>
@@ -473,16 +342,16 @@
           <div class="form-row">
             <div class="form-group">
               <label for="fname">First Name *</label>
-              <input type="text" id="fname" name="fname" placeholder="e.g. Giorgi" required />
+              <input type="text" id="fname" name="fname" placeholder="e.g. Nikoloz" required />
             </div>
             <div class="form-group">
               <label for="lname">Last Name *</label>
-              <input type="text" id="lname" name="lname" placeholder="e.g. Beridze" required />
+              <input type="text" id="lname" name="lname" placeholder="e.g. Tsikaridze" required />
             </div>
           </div>
           <div class="form-group">
             <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            <input type="email" id="email" name="email" placeholder="shenimaili@gmail.com" required />
           </div>
           <div class="form-group">
             <label for="trainer">Choose a Trainer *</label>
